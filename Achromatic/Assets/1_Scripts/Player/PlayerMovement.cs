@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed;                 // 걷기 속도
     public float sprintSpeed;               // 달리기 속도
     public float slideSpeed;                // 슬라이딩 속도
-
+    public float wallrunningSpeed;
+    
     private float desiredMoveSpeed;         
     private float lastDesiredMoveSpeed;
 
@@ -60,10 +61,12 @@ public class PlayerMovement : MonoBehaviour
         walking,
         sprinting,
         crouching,
+        wallrunning,
         sliding,
         air
     }
 
+    public bool wallrunning;
     public bool sliding;                    // 슬라이딩 체크
 
     private void Start()
@@ -135,8 +138,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        // Mode - Wallrunning
+        if (wallrunning)
+        {
+            state = MovementState.wallrunning;
+            desiredMoveSpeed = wallrunningSpeed;
+        }
         // Mode - Sliding
-        if (sliding)
+        else if (sliding)
         {
             state = MovementState.sliding;
 
