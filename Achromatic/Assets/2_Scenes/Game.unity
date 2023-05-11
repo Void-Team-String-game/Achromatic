@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1759177892}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 745
+  m_shaderPropertyID: 744
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
@@ -3061,13 +3061,19 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
-  wallRunForce: 200
+  wallRunForce: 500
+  wallJumpUpForce: 7
+  wallJumpSideForce: 12
   wallClimbSpeed: 3
   maxWallRunTime: 1.5
+  jumpKey: 32
   upwardsRunKey: 304
   downwardsRunKey: 306
   wallCheckDistance: 0.7
   minJumpHeight: 1
+  exitWallTime: 0.2
+  useGravity: 1
+  gravityCounterForce: 33.18
   orientation: {fileID: 2075774468}
 --- !u!1 &2075774467
 GameObject:

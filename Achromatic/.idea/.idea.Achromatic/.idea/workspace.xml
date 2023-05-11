@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="530d06ca-d07e-48c4-a3ee-e9d246c5f2c6" name="변경" comment="" />
+    <list default="true" id="530d06ca-d07e-48c4-a3ee-e9d246c5f2c6" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/1_Scripts/Player/MoveCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1_Scripts/Player/MoveCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1_Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1_Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/1_Scripts/Player/WallRunning.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/1_Scripts/Player/WallRunning.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/2_Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/2_Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Search.settings" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Search.settings" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,6 +122,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681826224165</updated>
       <workItem from="1681826230611" duration="3922000" />
+      <workItem from="1681980146114" duration="612000" />
     </task>
     <servers />
   </component>

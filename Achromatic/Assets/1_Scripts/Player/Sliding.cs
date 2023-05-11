@@ -5,21 +5,21 @@ using UnityEngine;
 public class Sliding : MonoBehaviour
 {
     [Header("References")]
-    public Transform orientation;                   // ¹æÇâ
+    public Transform orientation;                   // ë°©í–¥
     public Transform playerObj;                     // PlayerObj
     private Rigidbody rb;                           // RigidBody
-    private PlayerMovement pm;                      // PlayerMovement ½ºÅ©¸³Æ®
+    private PlayerMovement pm;                      // PlayerMovement ìŠ¤í¬ë¦½íŠ¸
 
     [Header("Sliding")]
-    public float maxSlideTime;                      // ÃÖ´ë ½½¶óÀÌµù ½Ã°£
-    public float slideForce;                        // ½½¶óÀÌµù Èû
-    private float slideTimer;                       // ½Ã°£ Å¸ÀÌ¸Ó
+    public float maxSlideTime;                      // ìµœëŒ€ ìŠ¬ë¼ì´ë”© ì‹œê°„
+    public float slideForce;                        // ìŠ¬ë¼ì´ë”© í˜
+    private float slideTimer;                       // ì‹œê°„ íƒ€ì´ë¨¸
 
-    public float slideYScale;                       // Sliding½Ã YScale
-    private float startYScale;                      // ½ÃÀÛ½Ã YScale
+    public float slideYScale;                       // Slidingì‹œ YScale
+    private float startYScale;                      // ì‹œì‘ì‹œ YScale
 
     [Header("Input")]
-    public KeyCode Slidekey = KeyCode.LeftControl;  // ½½¶óÀÌµù Å°
+    public KeyCode Slidekey = KeyCode.LeftControl;  // ìŠ¬ë¼ì´ë”© í‚¤
     private float horizontalInput;                  
     private float verticalInput;                    
 
@@ -36,7 +36,7 @@ public class Sliding : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(Slidekey) && (horizontalInput != 0 || verticalInput != 0)) // ¾È¿òÁ÷ÀÌ´Â »óÅÂ¿¡¼­ ½½¶óÀÌµù ¸øÇÏ°Ô ¸·±â
+        if (Input.GetKeyDown(Slidekey) && (horizontalInput != 0 || verticalInput != 0)) // ì•ˆì›€ì§ì´ëŠ” ìƒíƒœì—ì„œ ìŠ¬ë¼ì´ë”© ëª»í•˜ê²Œ ë§‰ê¸°
             StartSlide();
 
         if (Input.GetKeyUp(Slidekey) && pm.sliding)
@@ -47,33 +47,33 @@ public class Sliding : MonoBehaviour
     {
         pm.sliding = true;
 
-        playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z); // ÇÃ·¹ÀÌ¾î ³ôÀÌ º¯°æ
-        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // ³²´Â °ø°£ ¶«½Ã ¾Æ·¡·Î ¹Ğ¾îÁÖ±â
+        playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z); // í”Œë ˆì´ì–´ ë†’ì´ ë³€ê²½
+        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // ë‚¨ëŠ” ê³µê°„ ë•œì‹œ ì•„ë˜ë¡œ ë°€ì–´ì£¼ê¸°
 
-        slideTimer = maxSlideTime; // Timer¸¦ maxTimeÀ¸·Î Á¶Á¤
+        slideTimer = maxSlideTime; // Timerë¥¼ maxTimeìœ¼ë¡œ ì¡°ì •
     }
 
     private void FixedUpdate()
     {
-        if (pm.sliding) // ½½¶óÀÌµù½Ã
+        if (pm.sliding) // ìŠ¬ë¼ì´ë”©ì‹œ
             SlidingMovement();
     }
 
     private void SlidingMovement()
     {
-        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; // º¸°í ÀÖ´Â ¹æÇâÀÇ ¾Õ¿¡ VerticalInput(W, S)°ª °öÇÏ°í ¹æÇâ ¿À¸£ÂÊ¿¡ HorizontalInput(A, D)¿¡ °öÇØÁÖ±â
+        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; // ë³´ê³  ìˆëŠ” ë°©í–¥ì˜ ì•ì— VerticalInput(W, S)ê°’ ê³±í•˜ê³  ë°©í–¥ ì˜¤ë¥´ìª½ì— HorizontalInput(A, D)ì— ê³±í•´ì£¼ê¸°
 
         //sliding normal
-        if (!pm.OnSlope() || rb.velocity.y > -0.1f) // °æ»ç¸éÀÌ ¾Æ´Ï°Å³ª, À§ÂÊÀ¸·Î ÀÌµ¿ÇÒ ¶§
+        if (!pm.OnSlope() || rb.velocity.y > -0.1f) // ê²½ì‚¬ë©´ì´ ì•„ë‹ˆê±°ë‚˜, ìœ„ìª½ìœ¼ë¡œ ì´ë™í•  ë•Œ
         {
             rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
 
             slideTimer -= Time.deltaTime;
         }
 
-        else // °æ»ç·Î¶ó¸é
+        else // ê²½ì‚¬ë¡œë¼ë©´
         {
-            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force); // Åõ¸í º¤ÅÍ ¹Ş¾Æ¼­ ½½¶óÀÌµù!
+            rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force); // íˆ¬ëª… ë²¡í„° ë°›ì•„ì„œ ìŠ¬ë¼ì´ë”©!
         }
 
         if (slideTimer <= 0)
@@ -84,6 +84,6 @@ public class Sliding : MonoBehaviour
     {
         pm.sliding = false;
 
-        playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z); // ¿øº» Å©±â·Î µ¹¾Æ¿À±â
+        playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z); // ì›ë³¸ í¬ê¸°ë¡œ ëŒì•„ì˜¤ê¸°
     }
 }

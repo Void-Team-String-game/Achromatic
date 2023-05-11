@@ -1,61 +1,61 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed;                // ¿òÁ÷ÀÌ´Â ¼Óµµ
-    public float walkSpeed;                 // °È±â ¼Óµµ
-    public float sprintSpeed;               // ´Ş¸®±â ¼Óµµ
-    public float slideSpeed;                // ½½¶óÀÌµù ¼Óµµ
+    private float moveSpeed;                // ì›€ì§ì´ëŠ” ì†ë„
+    public float walkSpeed;                 // ê±·ê¸° ì†ë„
+    public float sprintSpeed;               // ë‹¬ë¦¬ê¸° ì†ë„
+    public float slideSpeed;                // ìŠ¬ë¼ì´ë”© ì†ë„
     public float wallrunningSpeed;
-    
-    private float desiredMoveSpeed;         
+
+    private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
 
-    public float speedIncreaseMultiplier;   // ½½¶óÀÌµù½Ã ¼Óµµ Ãß°¡
-    public float slopeIncreaseMultiplier;   // ½½¶óÀÌµù½Ã slope¶ó¸é ¼Óµµ Ãß°¡
+    public float speedIncreaseMultiplier;   // ìŠ¬ë¼ì´ë”©ì‹œ ì†ë„ ì¶”ê°€
+    public float slopeIncreaseMultiplier;   // ìŠ¬ë¼ì´ë”©ì‹œ slopeë¼ë©´ ì†ë„ ì¶”ê°€
 
-    public float groundDrag;                // ¸¶Âû·Â Á¶Àı º¯¼ö
+    public float groundDrag;                // ë§ˆì°°ë ¥ ì¡°ì ˆ ë³€ìˆ˜
 
     [Header("Jumping")]
-    public float jumpForce;                 // Á¡ÇÁ ³ôÀÌ(Èû)
-    public float jumpCooldown;              // Á¡ÇÁ ÄğÅ¸ÀÓ
-    public float airMultiplier;             // °øÁß ¼Óµµ Á¶Àı
-    bool readyToJump;                       // Á¡ÇÁ È®ÀÎ
+    public float jumpForce;                 // ì í”„ ë†’ì´(í˜)
+    public float jumpCooldown;              // ì í”„ ì¿¨íƒ€ì„
+    public float airMultiplier;             // ê³µì¤‘ ì†ë„ ì¡°ì ˆ
+    bool readyToJump;                       // ì í”„ í™•ì¸
 
     [Header("Crouching")]
-    public float crouchSpeed;               // ¾É±â ¼Óµµ
-    public float crouchYScale;              // ¾É±â Å©±â
-    private float startYScale;              // PlayerObj Ã³À½ Å©±â
+    public float crouchSpeed;               // ì•‰ê¸° ì†ë„
+    public float crouchYScale;              // ì•‰ê¸° í¬ê¸°
+    private float startYScale;              // PlayerObj ì²˜ìŒ í¬ê¸°
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;         // Á¡ÇÁ Å°
-    public KeyCode sprintKey = KeyCode.LeftShift;   // ´Ş¸®±â Å°
-    public KeyCode crouchKey = KeyCode.LeftControl; // ¾É±â Å°
+    public KeyCode jumpKey = KeyCode.Space;         // ì í”„ í‚¤
+    public KeyCode sprintKey = KeyCode.LeftShift;   // ë‹¬ë¦¬ê¸° í‚¤
+    public KeyCode crouchKey = KeyCode.LeftControl; // ì•‰ê¸° í‚¤
 
     [Header("Ground Check")]
-    public float playerHeight;              // Player ³ôÀÌ
+    public float playerHeight;              // Player ë†’ì´
     public LayerMask whatIsGround;          // Ground Layer
-    bool grounded;                          // ¶¥ È®ÀÎ
+    bool grounded;                          // ë•… í™•ì¸
 
     [Header("Slope Handling")]
-    public float maxSlopeAngle;             // ÃÖ´ë ±â¿ï±â °¢µµ
-    private RaycastHit slopeHit;            // slopeObj Á¤º¸ °¡Á®¿Ã ¶§ »ç¿ë
-    private bool exitingSlope;              // Slope¿¡¼­ ³ª¿Ã ¶§
+    public float maxSlopeAngle;             // ìµœëŒ€ ê¸°ìš¸ê¸° ê°ë„
+    private RaycastHit slopeHit;            // slopeObj ì •ë³´ ê°€ì ¸ì˜¬ ë•Œ ì‚¬ìš©
+    private bool exitingSlope;              // Slopeì—ì„œ ë‚˜ì˜¬ ë•Œ
 
 
-    public Transform orientation;           // ÇÃ·¹ÀÌ¾î º¸´Â ¹æÇâ
+    public Transform orientation;           // í”Œë ˆì´ì–´ ë³´ëŠ” ë°©í–¥
 
-    float horizontalInput;                  // A,D ÀÔ·Â
-    float verticalInput;                    // W,S ÀÔ·Â
+    float horizontalInput;                  // A,D ì…ë ¥
+    float verticalInput;                    // W,S ì…ë ¥
 
-    Vector3 moveDirection;                  // ÀÌµ¿ ¹æÇâ
+    Vector3 moveDirection;                  // ì´ë™ ë°©í–¥
 
     Rigidbody rb;                           // RigidBody
 
-    public MovementState state;             // ÀÌµ¿ ¹æ½Ä ¿­°ÅÇü
+    public MovementState state;             // ì´ë™ ë°©ì‹ ì—´ê±°í˜•
     public enum MovementState
     {
         walking,
@@ -67,27 +67,27 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool wallrunning;
-    public bool sliding;                    // ½½¶óÀÌµù Ã¼Å©
+    public bool sliding;                    // ìŠ¬ë¼ì´ë”© ì²´í¬
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        readyToJump = true; // Ã³À½¿¡ Á¡ÇÁ True
+        readyToJump = true; // ì²˜ìŒì— ì í”„ True
 
-        startYScale = transform.localScale.y; // Ã³À½ YScale¹Ş¾Æ ¿À±â
+        startYScale = transform.localScale.y; // ì²˜ìŒ YScaleë°›ì•„ ì˜¤ê¸°
     }
 
     private void Update()
     {
         // ground check
-        if(state == MovementState.crouching  || state == MovementState.sliding)
+        if (state == MovementState.crouching || state == MovementState.sliding)
         {
-            grounded = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // ¶¥ÀÎÁö Raycast·Î È®ÀÎ
+            grounded = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // ë•…ì¸ì§€ Raycastë¡œ í™•ì¸
         }
         else
-            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // ¶¥ÀÎÁö Raycast·Î È®ÀÎ
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround); // ë•…ì¸ì§€ Raycastë¡œ í™•ì¸
         Debug.DrawRay(transform.position - new Vector3(0, 0.1f, 0), Vector3.down, Color.red);
         MyInput();
         SpeedControl();
@@ -102,12 +102,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer(); // RigidBodyÀÌ±â ‹š¹®¿¡ FixUpdate
+        MovePlayer(); // RigidBodyì´ê¸° Â‹Âšë¬¸ì— FixUpdate
     }
 
     private void MyInput()
     {
-        // Input System(Manager)À¸·Î °ª ¹Ş¾Æ¿À±â
+        // Input System(Manager)ìœ¼ë¡œ ê°’ ë°›ì•„ì˜¤ê¸°
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -118,21 +118,21 @@ public class PlayerMovement : MonoBehaviour
 
             Jump();
 
-            // Invoke·Î ÄğÅ¸ÀÓ ½Ã°£ ÈÆ ÇÔ¼ö È£Ãâ
+            // Invokeë¡œ ì¿¨íƒ€ì„ ì‹œê°„ í›ˆ í•¨ìˆ˜ í˜¸ì¶œ
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
         // start crouch
         if (Input.GetKeyDown(crouchKey))
         {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z); // crounchYScale·Î Å©±â º¯°æ
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // °©ÀÛ½º·± Å©±â º¯°æ½Ã ¾Æ·¡ À§Ä¡¿¡ °ø°£ÀÌ ³²À½, ¹Ù·Î AddForce·Î ³»·ÁÁÖ±â
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z); // crounchYScaleë¡œ í¬ê¸° ë³€ê²½
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // ê°‘ì‘ìŠ¤ëŸ° í¬ê¸° ë³€ê²½ì‹œ ì•„ë˜ ìœ„ì¹˜ì— ê³µê°„ì´ ë‚¨ìŒ, ë°”ë¡œ AddForceë¡œ ë‚´ë ¤ì£¼ê¸°
         }
 
         // stop crouch
         if (Input.GetKeyUp(crouchKey))
         {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z); // ¿ø·¡ Å©±â·Î Å©±â º¯°æ
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z); // ì›ë˜ í¬ê¸°ë¡œ í¬ê¸° ë³€ê²½
         }
     }
 
@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.sliding;
 
-            if (OnSlope() && rb.velocity.y < 0.1f) // °æ»ç·Î¿¡ ÀÖ°í ¾Æ·¡·Î ÀÌµ¿ÇÏ¸é
+            if (OnSlope() && rb.velocity.y < 0.1f) // ê²½ì‚¬ë¡œì— ìˆê³  ì•„ë˜ë¡œ ì´ë™í•˜ë©´
                 desiredMoveSpeed = slideSpeed;
 
             else
@@ -184,12 +184,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // check if desiredMoveSpeed has changed drastically
-        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 10f && moveSpeed != 0) // ¸¶Áö¸· ¼Óµµ¿Í ¿øÇÏ´Â ¼ÓµµÀÇ Â÷ÀÌ°¡ 4ÀÌ»óÀÌ¶ó¸é Smooth ÄÚ·çµò ½ÇÇà
+        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 10f && moveSpeed != 0) // ë§ˆì§€ë§‰ ì†ë„ì™€ ì›í•˜ëŠ” ì†ë„ì˜ ì°¨ì´ê°€ 4ì´ìƒì´ë¼ë©´ Smooth ì½”ë£¨ë”˜ ì‹¤í–‰
         {
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());
         }
-        else // ¾Æ´Ï¶ó¸é Áï½Ã ¿øÇÏ´Â ¼Óµµ·Î º¯°æ
+        else // ì•„ë‹ˆë¼ë©´ ì¦‰ì‹œ ì›í•˜ëŠ” ì†ë„ë¡œ ë³€ê²½
         {
             moveSpeed = desiredMoveSpeed;
         }
@@ -201,40 +201,40 @@ public class PlayerMovement : MonoBehaviour
     {
         // smoothly lerp movementSpeed to desired value
         float time = 0;
-        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed); // ¿øÇÏ´Â ¼Óµµ¿Í ÇöÀç ¼ÓµµÀÇ Â÷ÀÌ
-        float startValue = moveSpeed; // ½ÃÀÛ ¼Óµµ¿¡ ÇöÀç ¼Óµµ¿¡ ´ëÀÔ
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed); // ì›í•˜ëŠ” ì†ë„ì™€ í˜„ì¬ ì†ë„ì˜ ì°¨ì´
+        float startValue = moveSpeed; // ì‹œì‘ ì†ë„ì— í˜„ì¬ ì†ë„ì— ëŒ€ì…
 
         while (time < difference)
         {
-            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference); // Á¡Â÷ timeÀÇ °ªÀÌ ´Ã¼ö·Ï º¸°£ÀÌ µÇ¾î ÀÚ¿¬½º·´°Ô ¼Óµµ°¡ Áõ°¡ÇÔ
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference); // ì ì°¨ timeì˜ ê°’ì´ ëŠ˜ìˆ˜ë¡ ë³´ê°„ì´ ë˜ì–´ ìì—°ìŠ¤ëŸ½ê²Œ ì†ë„ê°€ ì¦ê°€í•¨
 
-            if (OnSlope()) // °æ»ç·Î¸é
+            if (OnSlope()) // ê²½ì‚¬ë¡œë©´
             {
-                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal); //Vector3.upÀÇ ¹æÇâº¤ÅÍ¿Í slopeHit.normalÀÇ ¹ı¼±º¤ÅÍ »çÀÌÀÇ °¢µµ¸¦ ±¸ÇØ ÀúÀå
-                float slopeAngleIncrease = 1 + (slopeAngle / 90f); // 90µµ¸¦ ³Ñ¾î°¡¸é 1À» °¡¼Óµµ Ãß°¡
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal); //Vector3.upì˜ ë°©í–¥ë²¡í„°ì™€ slopeHit.normalì˜ ë²•ì„ ë²¡í„° ì‚¬ì´ì˜ ê°ë„ë¥¼ êµ¬í•´ ì €ì¥
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f); // 90ë„ë¥¼ ë„˜ì–´ê°€ë©´ 1ì„ ê°€ì†ë„ ì¶”ê°€
 
-                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease; // ÀÌµ¿¼Óµµ¸¦ ´õ ³ôÇôÁÜ
+                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease; // ì´ë™ì†ë„ë¥¼ ë” ë†’í˜€ì¤Œ
             }
             else
-                time += Time.deltaTime * speedIncreaseMultiplier; // °æ»ç·Î ¾Æ´Ï¸é
+                time += Time.deltaTime * speedIncreaseMultiplier; // ê²½ì‚¬ë¡œ ì•„ë‹ˆë©´
 
-            yield return null; // ÀÏ½ÃÁß´Ü ÈÄ ´ÙÀ½ ÇÁ·¹ÀÓ¿¡¼­ ´Ù½Ã ½ÃÀÛ
+            yield return null; // ì¼ì‹œì¤‘ë‹¨ í›„ ë‹¤ìŒ í”„ë ˆì„ì—ì„œ ë‹¤ì‹œ ì‹œì‘
         }
 
-        moveSpeed = desiredMoveSpeed; // ÀÌµ¿¼Óµµ¸¦ ¿øÇÏ´Â ¼Óµµ·Î
+        moveSpeed = desiredMoveSpeed; // ì´ë™ì†ë„ë¥¼ ì›í•˜ëŠ” ì†ë„ë¡œ
     }
 
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; // º¸°í ÀÖ´Â ¹æÇâÀÇ ¾Õ¿¡ VerticalInput(W, S)°ª °öÇÏ°í ¹æÇâ ¿À¸£ÂÊ¿¡ HorizontalInput(A, D)¿¡ °öÇØÁÖ±â
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; // ë³´ê³  ìˆëŠ” ë°©í–¥ì˜ ì•ì— VerticalInput(W, S)ê°’ ê³±í•˜ê³  ë°©í–¥ ì˜¤ë¥´ìª½ì— HorizontalInput(A, D)ì— ê³±í•´ì£¼ê¸°
 
         // on slope
-        if (OnSlope() && !exitingSlope) // °æ»ç·ÎÀÌ°í °æ»ç·Î¿¡¼­ ³ª°¡Áö ¾Ê¾Ò´Ù¸é
+        if (OnSlope() && !exitingSlope) // ê²½ì‚¬ë¡œì´ê³  ê²½ì‚¬ë¡œì—ì„œ ë‚˜ê°€ì§€ ì•Šì•˜ë‹¤ë©´
         {
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force); // GetSlopeMoveDirectionÀ¸·Î ¹æÇâÀ» ¹Ş¾Æ ¶È°°Àº ¼Óµµ·Î ¿Ã¶ó°¡°Ô ÇÏ±â
+            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force); // GetSlopeMoveDirectionìœ¼ë¡œ ë°©í–¥ì„ ë°›ì•„ ë˜‘ê°™ì€ ì†ë„ë¡œ ì˜¬ë¼ê°€ê²Œ í•˜ê¸°
 
-            if (rb.velocity.y > 0) // ¸¸¾à¿¡ °æ»ç·Î¿¡¼­ ÅëÅë Æ¤´Ù¸é ¾Æ·¡·Î AddForce
+            if (rb.velocity.y > 0) // ë§Œì•½ì— ê²½ì‚¬ë¡œì—ì„œ í†µí†µ íŠ„ë‹¤ë©´ ì•„ë˜ë¡œ AddForce
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
@@ -247,54 +247,54 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
         // turn gravity off while on slope
-        rb.useGravity = !OnSlope(); // °¡¸¸È÷ ÀÖÀ» ‹š ³»·Á¿À´Â°Å ¹æÁö
+        if(!wallrunning) rb.useGravity = !OnSlope(); // ê°€ë§Œíˆ ìˆì„ ë•Œ ë‚´ë ¤ì˜¤ëŠ”ê±° ë°©ì§€
     }
 
     private void SpeedControl()
     {
         // limiting speed on slope
-        if (OnSlope() && !exitingSlope) // °æ»ç·Î¿¡¼­ ´õ ºü¸¥ °ÍÀ» ¹æÁöÇÏ±â À§ÇØ
+        if (OnSlope() && !exitingSlope) // ê²½ì‚¬ë¡œì—ì„œ ë” ë¹ ë¥¸ ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´
         {
-            if (rb.velocity.magnitude > moveSpeed) // ÇöÀç ¼Óµµ°¡ moveSpeedº¸´Ù ºü¸£¸é
-                rb.velocity = rb.velocity.normalized * moveSpeed; // rb.velocity¸¦ Á¤±ÔÈ­ ½ÃÄÑ Å©±â¸¦ 1·Î ¸¸µé°í moveSpeed¸¦ °öÇØ Á¤»óÀûÀ¸·Î ¸¸µç´Ù.
+            if (rb.velocity.magnitude > moveSpeed) // í˜„ì¬ ì†ë„ê°€ moveSpeedë³´ë‹¤ ë¹ ë¥´ë©´
+                rb.velocity = rb.velocity.normalized * moveSpeed; // rb.velocityë¥¼ ì •ê·œí™” ì‹œì¼œ í¬ê¸°ë¥¼ 1ë¡œ ë§Œë“¤ê³  moveSpeedë¥¼ ê³±í•´ ì •ìƒì ìœ¼ë¡œ ë§Œë“ ë‹¤.
         }
 
         // limiting speed on ground or in air
         else
         {
-            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // flatVelÀÌ¶ó´Â x¿Í z°ªÀ» ¹Ş´Â º¤ÅÍ »ı¼º
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // flatVelì´ë¼ëŠ” xì™€ zê°’ì„ ë°›ëŠ” ë²¡í„° ìƒì„±
 
             // limit velocity if needed
-            if (flatVel.magnitude > moveSpeed) //flatVelÀÇ ¼Óµµ°¡ moveSpeedº¸´Ù ºü¸£¸é
+            if (flatVel.magnitude > moveSpeed) //flatVelì˜ ì†ë„ê°€ moveSpeedë³´ë‹¤ ë¹ ë¥´ë©´
             {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed; // limitedVelÀÌ¶ó´Â º¤ÅÍ¿¡ flatVelÀ» Á¤±ÔÈ­½ÃÄÑ 1·Î ¸¸µé°í moveSpeed¸¦ °öÇØ Á¤»óÀûÀ¸·Î ¸¸µç´Ù.
-                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); // ±×¸®°í Á¤»óÀûÀ¸·Î Àû¿ë½ÃÅ´
+                Vector3 limitedVel = flatVel.normalized * moveSpeed; // limitedVelì´ë¼ëŠ” ë²¡í„°ì— flatVelì„ ì •ê·œí™”ì‹œì¼œ 1ë¡œ ë§Œë“¤ê³  moveSpeedë¥¼ ê³±í•´ ì •ìƒì ìœ¼ë¡œ ë§Œë“ ë‹¤.
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z); // ê·¸ë¦¬ê³  ì •ìƒì ìœ¼ë¡œ ì ìš©ì‹œí‚´
             }
         }
     }
 
     private void Jump()
     {
-        exitingSlope = true; // °æ»ç·Î¿¡¼­ Á¡ÇÁ ¾ÈµÇ´Â °Å ¹æÁö
+        exitingSlope = true; // ê²½ì‚¬ë¡œì—ì„œ ì í”„ ì•ˆë˜ëŠ” ê±° ë°©ì§€
 
         // reset y velocity
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // velocity y¸¦ 0À¸·Î ÃÊ±âÈ­
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // velocity yë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); // transform.upÀº °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ È¸Àüµµ °í·Á¸¦ ÇÏ±â ¶§¹®¿¡ 
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); // transform.upì€ ê²Œì„ì˜¤ë¸Œì íŠ¸ì˜ íšŒì „ë„ ê³ ë ¤ë¥¼ í•˜ê¸° ë•Œë¬¸ì— 
     }
-    private void ResetJump() 
+    private void ResetJump()
     {
-        readyToJump = true; 
+        readyToJump = true;
 
         exitingSlope = false;
     }
 
-    public bool OnSlope() // °æ»ç·Î È®ÀÎ
+    public bool OnSlope() // ê²½ì‚¬ë¡œ í™•ì¸
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal); // up º¤ÅÍ¿Í ¹ı¼±º¤ÅÍ »çÀÌÀÇ °¢µµ ÀúÀå
-            return angle < maxSlopeAngle && angle != 0; // maxSlopeAngleº¸´Ù ÀÛ´Ù¸é True
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal); // up ë²¡í„°ì™€ ë²•ì„ ë²¡í„° ì‚¬ì´ì˜ ê°ë„ ì €ì¥
+            return angle < maxSlopeAngle && angle != 0; // maxSlopeAngleë³´ë‹¤ ì‘ë‹¤ë©´ True
         }
 
         return false;
@@ -302,6 +302,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized; // ¹æÇâ º¤ÅÍ¿Í ¹ı¼±º¤ÅÍ¸¦ ÅëÇØ Åõ¿µ º¤ÅÍÀÇ ¹æÇâÀ» ¸®ÅÏ
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized; // ë°©í–¥ ë²¡í„°ì™€ ë²•ì„ ë²¡í„°ë¥¼ í†µí•´ íˆ¬ì˜ ë²¡í„°ì˜ ë°©í–¥ì„ ë¦¬í„´
     }
 }
