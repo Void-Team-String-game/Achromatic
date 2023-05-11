@@ -69,8 +69,12 @@ public class PlayerMovement : MonoBehaviour
     public bool wallrunning;
     public bool sliding;                    // 슬라이딩 체크
 
+    [Header("Gun")]
+    public Gun gun; // 플레이어 공격
+
     private void Start()
     {
+        gun = GetComponentInChildren<Gun>(); // 총 오브젝트 받아오기
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -81,6 +85,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // shoot
+        UpdateAttack();
+
         // ground check
         if (state == MovementState.crouching || state == MovementState.sliding)
         {
@@ -303,5 +310,17 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized; // 방향 벡터와 법선벡터를 통해 투영 벡터의 방향을 리턴
+    }
+    private void UpdateAttack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("shoot!");
+            gun.StartWeaponAction();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            gun.StopWeaponAction();
+        }
     }
 }
