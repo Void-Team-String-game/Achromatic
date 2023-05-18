@@ -56,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;                           // RigidBody
 
     public MovementState state;             // 이동 방식 열거형
+
+    public GameObject PlayerObj;
+    public GameObject PEffect;
     public enum MovementState
     {
         walking,
@@ -72,8 +75,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Gun")]
     public Gun gun; // 플레이어 공격
 
+    private CapsuleCollider Ccollider;
+
     private void Start()
     {
+        Ccollider = transform.GetChild(0).GetComponent<CapsuleCollider>();
         gun = GetComponentInChildren<Gun>(); // 총 오브젝트 받아오기
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -132,14 +138,20 @@ public class PlayerMovement : MonoBehaviour
         // start crouch
         if (Input.GetKeyDown(crouchKey))
         {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z); // crounchYScale로 크기 변경
+            Ccollider.height *= 0.5f;
+            //transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z); // crounchYScale로 크기 변경
+            PlayerObj.transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            PEffect.transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // 갑작스런 크기 변경시 아래 위치에 공간이 남음, 바로 AddForce로 내려주기
         }
 
         // stop crouch
         if (Input.GetKeyUp(crouchKey))
         {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z); // 원래 크기로 크기 변경
+            Ccollider.height *= 2f;
+            PlayerObj.transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            PEffect.transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            //transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z); // 원래 크기로 크기 변경
         }
     }
 

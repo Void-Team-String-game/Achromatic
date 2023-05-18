@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.48395744, g: 0.57573867, b: 0.68019843, a: 1}
+  m_IndirectSpecularColor: {r: 0.48395744, g: 0.5757396, b: 0.68019843, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2268,7 +2268,7 @@ MonoBehaviour:
     maxSpread: 2
     stability: 10
     restoreFromRecoilSpeed: 0.7
-  armo: 0
+  armo: 10000000
   reloading: 0
 --- !u!95 &1108859898
 Animator:
@@ -3320,7 +3320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1759177892}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 831
+  m_shaderPropertyID: 689
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
@@ -3918,9 +3918,8 @@ GameObject:
   - component: {fileID: 1937686514}
   - component: {fileID: 1937686517}
   - component: {fileID: 1937686516}
-  - component: {fileID: 1937686515}
   m_Layer: 0
-  m_Name: PlayerObj (1)
+  m_Name: PEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3941,20 +3940,6 @@ Transform:
   m_Father: {fileID: 2005241583}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1937686515
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937686513}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1937686516
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4199,6 +4184,8 @@ MonoBehaviour:
   maxSlopeAngle: 40
   orientation: {fileID: 2075774468}
   state: 0
+  PlayerObj: {fileID: 1058045665}
+  PEffect: {fileID: 1937686513}
   wallrunning: 0
   sliding: 0
   gun: {fileID: 0}
@@ -4215,11 +4202,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 2075774468}
-  playerObj: {fileID: 2005241583}
+  playerObj: {fileID: 1058045666}
   maxSlideTime: 1e+25
   slideForce: 200
   slideYScale: 0.5
   Slidekey: 306
+  PEffect: {fileID: 1937686513}
 --- !u!114 &2005241586
 MonoBehaviour:
   m_ObjectHideFlags: 0

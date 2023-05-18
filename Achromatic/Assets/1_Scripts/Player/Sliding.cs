@@ -21,12 +21,16 @@ public class Sliding : MonoBehaviour
     [Header("Input")]
     public KeyCode Slidekey = KeyCode.LeftControl;  // 슬라이딩 키
     private float horizontalInput;                  
-    private float verticalInput;                    
+    private float verticalInput;    
+
+    private CapsuleCollider Ccollider;  
+    public GameObject PEffect;              
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        Ccollider = transform.GetChild(0).GetComponent<CapsuleCollider>();
 
         startYScale = playerObj.localScale.y;
     }
@@ -48,8 +52,10 @@ public class Sliding : MonoBehaviour
         pm.sliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z); // 플레이어 높이 변경
+        PEffect.transform.localScale = new Vector3(transform.localScale.x, slideYScale, transform.localScale.z);
+        Ccollider.height *= 0.5f;
         rb.AddForce(Vector3.down * 5f, ForceMode.Impulse); // 남는 공간 땜시 아래로 밀어주기
-
+        
         slideTimer = maxSlideTime; // Timer를 maxTime으로 조정
     }
 
@@ -83,7 +89,8 @@ public class Sliding : MonoBehaviour
     private void StopSlide()
     {
         pm.sliding = false;
-
         playerObj.localScale = new Vector3(playerObj.localScale.x, startYScale, playerObj.localScale.z); // 원본 크기로 돌아오기
+        PEffect.transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+        Ccollider.height *= 2f;
     }
 }
