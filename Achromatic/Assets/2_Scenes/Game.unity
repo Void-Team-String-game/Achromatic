@@ -543,7 +543,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -928,7 +928,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1532,7 +1532,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2310,7 +2310,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2366,8 +2366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0de6d472f264d49b348a9e1ab56c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleFlashEffect: {fileID: 19373818}
-  impactEffect: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c,
+  muzzleFlashEffect: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c,
+    type: 3}
+  impactEffect: {fileID: 1537593200154216, guid: 25093a0593dc83043a7bc17ebba0e95d,
     type: 3}
   weaponsetting:
     attackRate: 0.05
@@ -3034,7 +3035,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3253,7 +3254,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3431,7 +3432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1759177892}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 689
+  m_shaderPropertyID: 769
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
