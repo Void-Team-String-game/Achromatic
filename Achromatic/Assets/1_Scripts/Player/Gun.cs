@@ -113,7 +113,7 @@ public class Gun : MonoBehaviour
                 }
 
                 GameObject ImpactGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(ImpactGo, 0.5f);
+                Destroy(ImpactGo, 3.6f);
             }
             armo--;
             

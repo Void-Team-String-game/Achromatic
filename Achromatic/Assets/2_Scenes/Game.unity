@@ -2382,7 +2382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzleFlashEffect: {fileID: 19373818}
-  impactEffect: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c,
+  impactEffect: {fileID: 2790080455514716541, guid: 6ee446086635dd64e9b4c6ef79fe6027,
     type: 3}
   weaponsetting:
     attackRate: 0.05
@@ -3446,7 +3446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1759177892}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 825
+  m_shaderPropertyID: 908
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
