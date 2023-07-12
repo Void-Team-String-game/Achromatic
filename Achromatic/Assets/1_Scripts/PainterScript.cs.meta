@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: c3f4c37a037d8ec49b6d1e35e1cd3fc3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - PaintPrefab: {fileID: 5947622412655320729, guid: 80e43411c0cf4214185e75077d4d6cdb,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
