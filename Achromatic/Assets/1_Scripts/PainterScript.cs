@@ -9,13 +9,8 @@ public class PainterScript : MonoBehaviour
 {
     public static PainterScript Instance;
 
-    /// <summary>
-    /// A single paint decal to instantiate
-    /// </summary>
     public Transform PaintPrefab;
-
-    private int MinSplashs = 5;
-    private int MaxSplashs = 15;
+    
     private float SplashRange = 2f;
 
     private float MinScale = 0.25f;
