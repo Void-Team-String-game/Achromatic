@@ -27,21 +27,18 @@ public class PainterScript : MonoBehaviour
             Debug.LogError("Missing Paint decal prefab!");
     }
 
-    void Update()
+    public void ShootPaint()
     {
-        if (Input.GetMouseButton(0)) // 마우스 왼쪽 버튼을 누르는 동안 계속해서 실행
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            // PaintManager 오브젝트의 CreateDecal 함수 호출
+            PaintManager paintManager = FindObjectOfType<PaintManager>();
+            if (paintManager != null)
             {
-                // PaintManager 오브젝트의 CreateDecal 함수 호출
-                PaintManager paintManager = FindObjectOfType<PaintManager>();
-                if (paintManager != null)
-                {
-                    paintManager.CreateDecal(hit.point, hit.normal);
-                }
+                paintManager.CreateDecal(hit.point, hit.normal);
             }
         }
     }
