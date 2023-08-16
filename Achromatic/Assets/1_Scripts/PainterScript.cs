@@ -2,19 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Generate paint decals
-/// </summary>
 public class PainterScript : MonoBehaviour
 {
     public static PainterScript Instance;
 
     public Transform PaintPrefab;
-    
-    private float SplashRange = 2f;
-
-    private float MinScale = 0.25f;
-    private float MaxScale = 0.01f; // 최대 크기를 0.01로 설정
+    public int MinSplashs = 5;
+    public int MaxSplashs = 15;
+    public float SplashRange = 2f;
+    public float MinScale = 0.25f;
+    public float MaxScale = 0.01f;
 
     private bool mDrawDebug;
     private Vector3 mHitPoint;
@@ -32,14 +29,19 @@ public class PainterScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)) // 마우스 왼쪽 버튼을 누르는 동안 계속해서 실행
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Paint(hit.point + hit.normal * 0.01f, hit.normal);
+                // PaintManager 오브젝트의 CreateDecal 함수 호출
+                PaintManager paintManager = FindObjectOfType<PaintManager>();
+                if (paintManager != null)
+                {
+                    paintManager.CreateDecal(hit.point, hit.normal);
+                }
             }
         }
     }
@@ -50,28 +52,21 @@ public class PainterScript : MonoBehaviour
         mRaysDebug.Clear();
         mDrawDebug = true;
 
-        RaycastHit hit;
-        int drops = 1; // Generate only one decal
+        int drops = 1;
 
         for (int n = 0; n < drops; n++)
         {
             var fwd = transform.TransformDirection(Random.onUnitSphere * SplashRange);
             mRaysDebug.Add(new Ray(location, fwd));
 
+            RaycastHit hit;
             if (Physics.Raycast(location, fwd, out hit, SplashRange))
             {
-                var paintSplatter = GameObject.Instantiate(PaintPrefab, hit.point + hit.normal * 0.01f, Quaternion.LookRotation(normal)) as Transform;
-
-                var scaler = Random.Range(MinScale, MaxScale);
-                scaler = Mathf.Clamp(scaler, MinScale, MaxScale);
-
-                paintSplatter.localScale = Vector3.one * scaler;
-                paintSplatter.up = hit.normal;
-
-                Destroy(paintSplatter.gameObject, 5); // Destroy the decal after 5 seconds
-
-                // 출력
-                Debug.Log("Hit Point Euler Angles: " + paintSplatter.eulerAngles);
+                var paintManager = hit.collider.GetComponent<PaintManager>();
+                if (paintManager != null)
+                {
+                    paintManager.CreateDecal(hit.point, hit.normal);
+                }
             }
         }
     }
@@ -87,4 +82,4 @@ public class PainterScript : MonoBehaviour
             }
         }
     }
-}
+}   
