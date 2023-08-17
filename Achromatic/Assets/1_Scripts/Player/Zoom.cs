@@ -89,10 +89,16 @@ public class Zoom : MonoBehaviour
         }
         else
         {
-           // status.runSpeed = tempRunspeed;
-           // status.walkSpeed = tempWalkspeed;
-
-            crosshair.SetActive(true);
+            // status.runSpeed = tempRunspeed;
+            // status.walkSpeed = tempWalkspeed;
+            if(Time.timeScale == 0)
+            {
+                crosshair.SetActive(false);
+            }
+            else
+            {
+                crosshair.SetActive(true);
+            }
             Camanim.SetBool("Zooming", false);
             Gunanim.SetBool("Zooming", false);
         }
