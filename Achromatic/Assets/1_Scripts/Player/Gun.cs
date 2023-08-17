@@ -12,11 +12,8 @@ public class Gun : MonoBehaviour
 
     [Header("Fire Effects")]
     [SerializeField]
-    private GameObject muzzleFlashEffect;
+    private ParticleSystem muzzleFlashEffect;
 
-    [Header("Hit Effects")]
-    [SerializeField]
-    private GameObject impactEffect;
 
     [Header("Weapon Setting")]
     [SerializeField]
@@ -31,7 +28,11 @@ public class Gun : MonoBehaviour
     private float stability;
     private float maxSpread;
 
+    PainterScript painterScript;
+
     Animator anim;
+
+
     #endregion
 
     #region Preprocessing Function
@@ -42,10 +43,7 @@ public class Gun : MonoBehaviour
         anim = GetComponent<Animator>();
         stability = weaponsetting.stability;
         maxSpread = weaponsetting.maxSpread;
-    }
-    private void OnEnable()
-    {
-        muzzleFlashEffect.SetActive(false);
+        painterScript = FindObjectOfType<PainterScript>();
     }
     #endregion
 
@@ -63,7 +61,7 @@ public class Gun : MonoBehaviour
                 }
                 else
                 {
-                    OnAttack();
+                    StartCoroutine("SingleAttack");
                 }
             }
         }
@@ -87,6 +85,18 @@ public class Gun : MonoBehaviour
 
         StopWeaponAction();
     }
+
+    private IEnumerator SingleAttack()
+    {
+        if (armo > 0 && !reloading)
+        {
+            OnAttack();
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        anim.SetBool("Shoot", false);
+    }
+
     public void OnAttack()
     {
         if(Time.time - lastAttackTime > weaponsetting.attackRate)
@@ -111,22 +121,20 @@ public class Gun : MonoBehaviour
                 {
                     mob.TakeDamage(weaponsetting.attackDamage);
                 }
-
-                GameObject ImpactGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(ImpactGo, 3.6f);
             }
             armo--;
+
+            painterScript.ShootPaint();
+            
             
             StartCoroutine("OnMuzzleFlashEffect");
-
         }
     }
 
     private IEnumerator OnMuzzleFlashEffect()
     {
-        muzzleFlashEffect.SetActive(true);
+        muzzleFlashEffect.Play();
         yield return new WaitForSeconds(weaponsetting.attackRate * 0.3f);
-        muzzleFlashEffect.SetActive(false);
     }
     #endregion
     
