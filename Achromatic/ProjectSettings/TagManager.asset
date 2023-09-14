@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gun
+  - core
   layers:
   - Default
   - TransparentFX

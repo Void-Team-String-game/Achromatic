@@ -28,10 +28,13 @@ public class Gun : MonoBehaviour
     private float stability;
     private float maxSpread;
 
+    private bool coroutinelock = false;
+
     PainterScript painterScript;
 
     Animator anim;
 
+    Mob mob;
 
     #endregion
 
@@ -116,10 +119,12 @@ public class Gun : MonoBehaviour
 
             if(Physics.Raycast(zoom.Cam.transform.position, fireDirection, out hit, weaponsetting.attackDistance))
             {
-                Mob mob = hit.transform.GetComponent<Mob>();
+                mob = hit.transform.GetComponent<Mob>();
                 if(mob != null)
                 {
                     mob.TakeDamage(weaponsetting.attackDamage);
+                    mob.target = GameObject.FindWithTag("Player").transform;
+                    if(!coroutinelock) StartCoroutine(timer());
                 }
             }
             armo--;
@@ -135,6 +140,14 @@ public class Gun : MonoBehaviour
     {
         muzzleFlashEffect.Play();
         yield return new WaitForSeconds(weaponsetting.attackRate * 0.3f);
+    }
+    private IEnumerator timer()
+    {
+        coroutinelock = true;
+        yield return new WaitForSeconds(5.0f);
+        mob.target = GameObject.FindWithTag("core").transform;
+        coroutinelock = false;
+
     }
     #endregion
     
