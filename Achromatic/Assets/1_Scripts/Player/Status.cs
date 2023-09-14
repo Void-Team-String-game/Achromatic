@@ -10,4 +10,5 @@ public class Status : MonoBehaviour
     public float hp;
     public float walkSpeed;
     public float runSpeed;
+    public float score;
 }
