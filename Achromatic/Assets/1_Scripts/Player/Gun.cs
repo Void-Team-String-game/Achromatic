@@ -145,7 +145,7 @@ public class Gun : MonoBehaviour
     {
         coroutinelock = true;
         yield return new WaitForSeconds(5.0f);
-        mob.target = GameObject.FindWithTag("core").transform; // Issue Occured!
+        mob.target = GameObject.FindWithTag("core").transform;
         coroutinelock = false;
 
     }
