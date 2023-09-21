@@ -8,13 +8,24 @@ public class PaintManager : MonoBehaviour
     public void CreateDecal(Vector3 position, Vector3 normal)
     {
         Debug.Log("CreateDecal function called!");
-        var paintSplatter = GameObject.Instantiate(PaintPrefab, position + normal * 0.01f, Quaternion.LookRotation(normal)) as Transform;
+        var paintSplatter = GameObject.Instantiate(PaintPrefab, position + normal * 0.01f, Quaternion.identity) as Transform;
 
         var scaler = Random.Range(PainterScript.Instance.MinScale, MaxDecalSize);
         scaler = Mathf.Clamp(scaler, PainterScript.Instance.MinScale, MaxDecalSize);
 
         paintSplatter.localScale = Vector3.one * scaler;
-        paintSplatter.up = normal;
+
+        // normal 벡터가 x축 방향인 경우
+        if (normal == Vector3.right)
+        {
+            // 데칼을 x축 180도 회전, y축 90도 회전
+            paintSplatter.eulerAngles = new Vector3(180f, 90f, paintSplatter.eulerAngles.z);
+        }
+        else
+        {
+            // 기존 코드대로 데칼을 normal 방향으로 회전
+            paintSplatter.LookAt(position + normal);
+        }
 
         Destroy(paintSplatter.gameObject, 5);
 
