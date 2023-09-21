@@ -6,12 +6,12 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LP Mummy Demo
+  m_Name: Mummy_Mob
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: locomotion
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -1047,4 +1047,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 36, y: -12, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 110238712}
+  m_DefaultState: {fileID: 110291058}

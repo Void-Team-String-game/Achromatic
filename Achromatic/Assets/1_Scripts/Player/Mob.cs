@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Mob : MonoBehaviour
 {
+    HpScript hpScript;
     Status playerstatus;
     NavMeshAgent nav;
     GameObject player;
@@ -15,23 +16,20 @@ public class Mob : MonoBehaviour
     public float health = 100f;
     public float damage = 5f;
     public float score = 100f;
+    private bool attacklock = false;
 
     private void Start()
     {
+        hpScript = GameObject.Find("Hpbar").GetComponent<HpScript>();
         nav = GetComponent<NavMeshAgent>();
         playerstatus = GameObject.FindWithTag("Player").GetComponent<Status>();
         player = GameObject.FindWithTag("Player");
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         nav.SetDestination(target.transform.position);
-        /*
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("CurrentStateName")) // 애니메이션 이름이 실행중일 때 실행
-        {
-            Attack();
-        }
-        */
     }
     public void TakeDamage(float amount)
     {
@@ -42,9 +40,15 @@ public class Mob : MonoBehaviour
         }
     }
 
-    public void Attack()
+
+    IEnumerator Attack()
     {
+        attacklock = true;
         playerstatus.hp -= damage;
+        hpScript.UpdateHp(playerstatus.hp);
+
+        yield return new WaitUntil(()=>!anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"));
+        attacklock = false;
     }
 
     private void Die()
@@ -53,11 +57,19 @@ public class Mob : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerStay(Collider other)
     {
-        if(collision.gameObject.tag=="Player")
+        if (other.gameObject.tag == "Player")
         {
-            // 공격 모션 실행
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && attacklock==false)
+                {
+                    StartCoroutine(Attack());
+                }
+            }
+            else anim.SetTrigger("attack1");
         }
     }
 }
