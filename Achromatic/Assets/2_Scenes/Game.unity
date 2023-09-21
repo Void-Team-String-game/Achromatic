@@ -5821,7 +5821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1759177892
 Transform:
   m_ObjectHideFlags: 0
@@ -5954,7 +5954,7 @@ MonoBehaviour:
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
-    m_move: 0.43254995
+    m_move: 0
 --- !u!1 &1760044422
 GameObject:
   m_ObjectHideFlags: 0
@@ -6844,7 +6844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1937686514
 Transform:
   m_ObjectHideFlags: 0
