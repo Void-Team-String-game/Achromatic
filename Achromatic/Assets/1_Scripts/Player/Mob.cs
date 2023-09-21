@@ -26,11 +26,12 @@ public class Mob : MonoBehaviour
     private void Update()
     {
         nav.SetDestination(target.transform.position);
-
+        /*
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("CurrentStateName")) // 애니메이션 이름이 실행중일 때 실행
         {
             Attack();
         }
+        */
     }
     public void TakeDamage(float amount)
     {
