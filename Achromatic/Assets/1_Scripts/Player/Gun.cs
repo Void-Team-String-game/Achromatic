@@ -16,10 +16,8 @@ public class Gun : MonoBehaviour
 
 
     [Header("Weapon Setting")]
-    [SerializeField]
-    private WeaponSetting weaponsetting;
-    [SerializeField]
-    private int armo;
+    public WeaponSetting weaponsetting;
+    public int armo;
     public bool reloading = false;
 
     private float lastAttackTime = 0;
