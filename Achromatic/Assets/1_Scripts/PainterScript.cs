@@ -36,7 +36,7 @@ public class PainterScript : MonoBehaviour
         {
             // PaintManager 오브젝트의 CreateDecal 함수 호출
             PaintManager paintManager = FindObjectOfType<PaintManager>();
-            if (paintManager != null)
+            if (paintManager != null && hit.transform.GetComponent<Mob>() == null)
             {
                 paintManager.CreateDecal(hit.point, hit.normal);
             }

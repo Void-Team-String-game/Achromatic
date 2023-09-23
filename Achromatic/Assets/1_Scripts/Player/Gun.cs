@@ -33,6 +33,7 @@ public class Gun : MonoBehaviour
     Animator anim;
 
     Mob mob;
+    Transform coretransform;
 
     #endregion
 
@@ -45,6 +46,7 @@ public class Gun : MonoBehaviour
         stability = weaponsetting.stability;
         maxSpread = weaponsetting.maxSpread;
         painterScript = FindObjectOfType<PainterScript>();
+        coretransform = GameObject.Find("Core").transform;
     }
     #endregion
 
@@ -121,8 +123,11 @@ public class Gun : MonoBehaviour
                 if(mob != null)
                 {
                     mob.TakeDamage(weaponsetting.attackDamage);
-                    mob.target = GameObject.FindWithTag("Player").transform;
-                    if(!coroutinelock) StartCoroutine(timer());
+                    if (!coroutinelock)
+                    {
+                        mob.target = GameObject.FindWithTag("Player").transform;
+                        StartCoroutine(timer());
+                    }
                 }
             }
             armo--;
@@ -143,9 +148,8 @@ public class Gun : MonoBehaviour
     {
         coroutinelock = true;
         yield return new WaitForSeconds(5.0f);
-        mob.target = GameObject.FindWithTag("core").transform;
+        mob.target = coretransform;
         coroutinelock = false;
-
     }
     #endregion
     
