@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Mob : MonoBehaviour
 {
     HpScript hpScript;
+    ScoreScript scoreScript;
     Status playerstatus;
     NavMeshAgent nav;
     GameObject player;
@@ -21,6 +22,7 @@ public class Mob : MonoBehaviour
     private void Start()
     {
         hpScript = GameObject.Find("Hpbar").GetComponent<HpScript>();
+        scoreScript = GameObject.Find("Score_value").GetComponent<ScoreScript>();
         nav = GetComponent<NavMeshAgent>();
         playerstatus = GameObject.FindWithTag("Player").GetComponent<Status>();
         player = GameObject.FindWithTag("Player");
@@ -53,7 +55,7 @@ public class Mob : MonoBehaviour
 
     private void Die()
     {
-        playerstatus.score += score;
+        scoreScript.UpdateScore(score);
         Destroy(gameObject);
     }
 
@@ -70,6 +72,12 @@ public class Mob : MonoBehaviour
                 }
             }
             else anim.SetTrigger("attack1");
+        }
+        if (other.gameObject.tag == "core")
+        {
+            Debug.Log("Core attacked");
+            scoreScript.UpdateScore(-300f);
+            Destroy(gameObject);
         }
     }
 }
