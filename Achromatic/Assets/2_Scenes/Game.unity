@@ -22134,6 +22134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PaintPrefab: {fileID: 2969662000205058705, guid: fcff74a4608266e4d94acb4f3054b34d,
     type: 3}
+  MuzzlePrefab: {fileID: 2505063859833107322, guid: eb6bfe4dfe3cb104683f37bd70d88c35,
+    type: 3}
   MinSplashs: 5
   MaxSplashs: 15
   SplashRange: 2
