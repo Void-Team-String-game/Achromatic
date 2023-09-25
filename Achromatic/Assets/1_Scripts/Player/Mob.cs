@@ -27,6 +27,8 @@ public class Mob : MonoBehaviour
         playerstatus = GameObject.FindWithTag("Player").GetComponent<Status>();
         player = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
+
+        target = GameObject.FindWithTag("core").transform;
     }
 
     private void Update()
