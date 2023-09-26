@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
     private float stability;
     private float maxSpread;
 
-    private bool coroutinelock = false;
+    
 
     PainterScript painterScript;
 
@@ -123,7 +123,7 @@ public class Gun : MonoBehaviour
                 if(mob != null)
                 {
                     mob.TakeDamage(weaponsetting.attackDamage);
-                    if (!coroutinelock)
+                    if (!mob.coroutinelock)
                     {
                         mob.target = GameObject.FindWithTag("Player").transform;
                         StartCoroutine(timer());
@@ -146,10 +146,10 @@ public class Gun : MonoBehaviour
     }
     private IEnumerator timer()
     {
-        coroutinelock = true;
+        mob.coroutinelock = true;
         yield return new WaitForSeconds(5.0f);
         mob.target = coretransform;
-        coroutinelock = false;
+        mob.coroutinelock = false;
     }
     #endregion
     

@@ -14,7 +14,7 @@ public class Portal : MonoBehaviour
     {
         if(summonlock == false)
         {
-            Instantiate(mob, gameObject.transform);
+            Instantiate(mob, gameObject.transform.position, Quaternion.identity);
             StartCoroutine(SummonMob(cooltime));
         }
         

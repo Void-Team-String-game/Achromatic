@@ -18,6 +18,8 @@ public class Mob : MonoBehaviour
     public float damage = 5f;
     public float score = 100f;
     private bool attacklock = false;
+    [HideInInspector]
+    public bool coroutinelock = false;
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class Mob : MonoBehaviour
     {
         nav.SetDestination(target.transform.position);
     }
+
     public void TakeDamage(float amount)
     {
         health -= amount;
