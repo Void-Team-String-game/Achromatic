@@ -107,6 +107,8 @@ public class SaveController : MonoBehaviour
         }
         Load();
     }
+
+    /*
     void Update()
     {
         if (Input.GetKeyDown("s"))
@@ -118,8 +120,9 @@ public class SaveController : MonoBehaviour
             Load();
         }
     }
+    */
 
-    void Save()
+    public void Save()
     {
         SaveData character = new SaveData.SavaDataBuilder()
             .Name(UserData.name)
@@ -129,7 +132,7 @@ public class SaveController : MonoBehaviour
         SaveSystem.Save(character, "playerinfo", useEncryption);
     }
 
-    void Load()
+    public void Load()
     {
         SaveData loadData = SaveSystem.Load("playerinfo", useEncryption);
         if (loadData != null)

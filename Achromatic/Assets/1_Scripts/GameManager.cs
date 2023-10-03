@@ -9,17 +9,19 @@ public class GameManager : MonoBehaviour
     CoreScript core;
 
     Animator anim;
+    bool coroutinelock = false;
 
     private void Awake()
     {
         status = GameObject.FindWithTag("Player").GetComponent<Status>();
         core = GameObject.FindWithTag("core").GetComponent<CoreScript>();
         anim = GameObject.Find("Shadow").GetComponent<Animator>();
+        UserData.score = 0f;
     }
 
     private void Update()
     {
-        if (core.currentcorehp <= 0) SceneManager.LoadScene("CoreDestroy");
+        if (core.currentcorehp <= 0 && coroutinelock==false) SceneManager.LoadScene("CoreDestroy");
         if (status.hp <= 0)
         {
             StartCoroutine("Timer");
@@ -28,9 +30,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Timer()
     {
+        coroutinelock = true;
         anim.SetBool("Die", true);
         yield return new WaitForSeconds(1f);
         anim.SetBool("Die", false);
+        coroutinelock = false;
         SceneManager.LoadScene("GameOver");
     }
 }
