@@ -2215,6 +2215,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 400156706}
     m_Modifications:
+    - target: {fileID: 7563463073631226816, guid: e60f23c0b5a85cf428f7fedb51ded394,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: c769b2fbe52745444a15747e9caa0e90,
+        type: 2}
     - target: {fileID: 7563463073631226819, guid: e60f23c0b5a85cf428f7fedb51ded394,
         type: 3}
       propertyPath: damage
@@ -25147,7 +25153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1759177892}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 1131
+  m_shaderPropertyID: 1139
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
@@ -25928,10 +25934,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -26110,7 +26116,7 @@ GameObject:
   - component: {fileID: 2075774468}
   m_Layer: 0
   m_Name: Orientation
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26137,6 +26143,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 400156706}
     m_Modifications:
+    - target: {fileID: 7563463073631226816, guid: e60f23c0b5a85cf428f7fedb51ded394,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: c769b2fbe52745444a15747e9caa0e90,
+        type: 2}
     - target: {fileID: 7563463073631226819, guid: e60f23c0b5a85cf428f7fedb51ded394,
         type: 3}
       propertyPath: damage

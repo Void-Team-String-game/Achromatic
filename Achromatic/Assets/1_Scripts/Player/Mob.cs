@@ -76,9 +76,10 @@ public class Mob : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            scoreScript.UpdateScore(0);
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
             {
-                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9f && attacklock==false)
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.9f && attacklock==false)
                 {
                     StartCoroutine(Attack());
                 }
