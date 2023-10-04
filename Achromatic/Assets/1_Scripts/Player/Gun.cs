@@ -16,10 +16,8 @@ public class Gun : MonoBehaviour
 
 
     [Header("Weapon Setting")]
-    [SerializeField]
-    private WeaponSetting weaponsetting;
-    [SerializeField]
-    private int armo;
+    public WeaponSetting weaponsetting;
+    public int armo;
     public bool reloading = false;
 
     private float lastAttackTime = 0;
@@ -28,13 +26,14 @@ public class Gun : MonoBehaviour
     private float stability;
     private float maxSpread;
 
-    private bool coroutinelock = false;
+    
 
     PainterScript painterScript;
 
     Animator anim;
 
     Mob mob;
+    Transform coretransform;
 
     #endregion
 
@@ -47,6 +46,7 @@ public class Gun : MonoBehaviour
         stability = weaponsetting.stability;
         maxSpread = weaponsetting.maxSpread;
         painterScript = FindObjectOfType<PainterScript>();
+        coretransform = GameObject.Find("Core").transform;
     }
     #endregion
 
@@ -123,8 +123,11 @@ public class Gun : MonoBehaviour
                 if(mob != null)
                 {
                     mob.TakeDamage(weaponsetting.attackDamage);
-                    mob.target = GameObject.FindWithTag("Player").transform;
-                    if(!coroutinelock) StartCoroutine(timer());
+                    if (!mob.coroutinelock)
+                    {
+                        mob.target = GameObject.FindWithTag("Player").transform;
+                        StartCoroutine(timer());
+                    }
                 }
             }
             armo--;
@@ -143,11 +146,10 @@ public class Gun : MonoBehaviour
     }
     private IEnumerator timer()
     {
-        coroutinelock = true;
+        mob.coroutinelock = true;
         yield return new WaitForSeconds(5.0f);
-        mob.target = GameObject.FindWithTag("core").transform;
-        coroutinelock = false;
-
+        mob.target = coretransform;
+        mob.coroutinelock = false;
     }
     #endregion
     

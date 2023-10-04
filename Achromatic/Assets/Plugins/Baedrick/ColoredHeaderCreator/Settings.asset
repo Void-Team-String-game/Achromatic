@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   headerSettings:
-    headerText: environment
+    headerText: map
     headerColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     textAlignmentOptions: 0
     fontStyleOptions: 0

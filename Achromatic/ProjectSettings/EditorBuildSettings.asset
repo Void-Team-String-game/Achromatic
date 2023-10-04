@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2_Scenes/Game.unity
     guid: 38e7569252a1b88498dd52dcd59a2b00
+  - enabled: 1
+    path: Assets/2_Scenes/CoreDestroy.unity
+    guid: eed5cd5ffdbc097439a4f6e7938cc548
+  - enabled: 1
+    path: Assets/2_Scenes/GameOver.unity
+    guid: 7ba3f81512c8a3b48802809abc2a9842
   m_configObjects: {}

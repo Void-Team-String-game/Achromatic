@@ -1,53 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
-    public static GameManager GetInstance()
+    Status status;
+    CoreScript core;
+
+    Animator anim;
+    bool coroutinelock = false;
+
+    private void Awake()
     {
-        return instance;
+        status = GameObject.FindWithTag("Player").GetComponent<Status>();
+        core = GameObject.FindWithTag("core").GetComponent<CoreScript>();
+        anim = GameObject.Find("Shadow").GetComponent<Animator>();
+        UserData.score = 0f;
     }
 
-    void Init()
+    private void Update()
     {
-        if (instance == null)
+        if (core.currentcorehp <= 0 && coroutinelock==false) SceneManager.LoadScene("CoreDestroy");
+        if (status.hp <= 0)
         {
-            GameObject go = GameObject.Find("GameSystem");
-            if (go == null)
-            {
-                go = new GameObject { name = "GameSystem"};
-            }
-
-            if (go.GetComponent<GameManager>() == null)
-            {
-                go.AddComponent<GameManager>();
-            }
-            DontDestroyOnLoad(go);
-            instance = go.GetComponent<GameManager>();
+            StartCoroutine("Timer");
         }
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Init();
-    }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Timer()
     {
-        
-    }
-    public void SaveByJson<T>(string filePath, string fileName, T obj)
-    {
-        var fileStream = new FileStream($"{filePath}/{fileName}", FileMode.Create);
-        var jsonData = JsonUtility.ToJson(obj);
-        var data = Encoding.UTF8.GetBytes(jsonData);
-        fileStream.Write(data, 0, data.Length);
-        fileStream.Close();
+        coroutinelock = true;
+        anim.SetBool("Die", true);
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("Die", false);
+        coroutinelock = false;
+        SceneManager.LoadScene("GameOver");
     }
 }

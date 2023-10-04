@@ -7,6 +7,7 @@ public class PainterScript : MonoBehaviour
     public static PainterScript Instance;
 
     public Transform PaintPrefab;
+    public GameObject MuzzlePrefab;
     public int MinSplashs = 5;
     public int MaxSplashs = 15;
     public float SplashRange = 2f;
@@ -38,7 +39,15 @@ public class PainterScript : MonoBehaviour
             PaintManager paintManager = FindObjectOfType<PaintManager>();
             if (paintManager != null)
             {
-                paintManager.CreateDecal(hit.point, hit.normal);
+                if (hit.transform.GetComponent<Mob>() != null)
+                {
+                    GameObject ImpactGo = Instantiate(MuzzlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    Destroy(ImpactGo, 0.5f);
+                }
+                else
+                {
+                    paintManager.CreateDecal(hit.point, hit.normal);
+                }
             }
         }
     }

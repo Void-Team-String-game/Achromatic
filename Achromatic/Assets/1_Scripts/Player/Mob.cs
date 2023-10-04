@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class Mob : MonoBehaviour
 {
     HpScript hpScript;
+    CoreScript coreScript;
+    ScoreScript scoreScript;
     Status playerstatus;
     NavMeshAgent nav;
     GameObject player;
@@ -17,20 +19,27 @@ public class Mob : MonoBehaviour
     public float damage = 5f;
     public float score = 100f;
     private bool attacklock = false;
+    [HideInInspector]
+    public bool coroutinelock = false;
 
     private void Start()
     {
         hpScript = GameObject.Find("Hpbar").GetComponent<HpScript>();
+        coreScript = GameObject.FindWithTag("core").GetComponent<CoreScript>();
+        scoreScript = GameObject.Find("Score_value").GetComponent<ScoreScript>();
         nav = GetComponent<NavMeshAgent>();
         playerstatus = GameObject.FindWithTag("Player").GetComponent<Status>();
         player = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
+
+        target = GameObject.FindWithTag("core").transform;
     }
 
     private void Update()
     {
         nav.SetDestination(target.transform.position);
     }
+
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -44,6 +53,11 @@ public class Mob : MonoBehaviour
     IEnumerator Attack()
     {
         attacklock = true;
+
+        if (damage >= playerstatus.hp)
+        {
+            damage = playerstatus.hp;
+        }
         playerstatus.hp -= damage;
         hpScript.UpdateHp(playerstatus.hp);
 
@@ -53,7 +67,7 @@ public class Mob : MonoBehaviour
 
     private void Die()
     {
-        playerstatus.score += score;
+        scoreScript.UpdateScore(score);
         Destroy(gameObject);
     }
 
@@ -62,14 +76,21 @@ public class Mob : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            scoreScript.UpdateScore(0);
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
             {
-                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f && attacklock==false)
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.9f && attacklock==false)
                 {
                     StartCoroutine(Attack());
                 }
             }
             else anim.SetTrigger("attack1");
+        }
+        if (other.gameObject.tag == "core")
+        {
+            Debug.Log("Core attacked");
+            coreScript.UpdateHp(-damage);
+            Destroy(gameObject);
         }
     }
 }
