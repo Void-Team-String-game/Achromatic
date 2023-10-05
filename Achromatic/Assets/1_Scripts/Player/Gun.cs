@@ -46,7 +46,7 @@ public class Gun : MonoBehaviour
         stability = weaponsetting.stability;
         maxSpread = weaponsetting.maxSpread;
         painterScript = FindObjectOfType<PainterScript>();
-        coretransform = GameObject.Find("Core").transform;
+        coretransform = GameObject.FindWithTag("core").transform;
     }
     #endregion
 
