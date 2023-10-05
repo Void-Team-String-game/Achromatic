@@ -25,7 +25,7 @@ public class HpScript : MonoBehaviour
     public void UpdateHp(float z)
     {
         float alpha = 0.99f;
-        Hptext.text = ((int)z).ToString();
+        Hptext.text = z.ToString();
         for(int i=0; i<4; i++)
         {
             if (z - 25 > 0)

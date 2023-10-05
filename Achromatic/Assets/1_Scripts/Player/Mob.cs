@@ -28,8 +28,8 @@ public class Mob : MonoBehaviour
         coreScript = GameObject.FindWithTag("core").GetComponent<CoreScript>();
         scoreScript = GameObject.Find("Score_value").GetComponent<ScoreScript>();
         nav = GetComponent<NavMeshAgent>();
-        playerstatus = GameObject.FindWithTag("Player").GetComponent<Status>();
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("player");
+        playerstatus = player.GetComponent<Status>();
         anim = GetComponent<Animator>();
 
         target = GameObject.FindWithTag("core").transform;
@@ -54,13 +54,6 @@ public class Mob : MonoBehaviour
     {
         attacklock = true;
 
-        if (damage >= playerstatus.hp)
-        {
-            damage = playerstatus.hp;
-        }
-        playerstatus.hp -= damage;
-        hpScript.UpdateHp(playerstatus.hp);
-
         yield return new WaitUntil(()=>!anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"));
         attacklock = false;
     }
@@ -74,13 +67,19 @@ public class Mob : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            scoreScript.UpdateScore(0);
+        if (other.gameObject.tag == "player")
+        {   
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.9f && attacklock==false)
                 {
+                    scoreScript.UpdateScore(-score);
+                    if (damage >= playerstatus.hp)
+                    {
+                        damage = playerstatus.hp;
+                    }
+                    playerstatus.hp -= damage;
+                    hpScript.UpdateHp(playerstatus.hp);
                     StartCoroutine(Attack());
                 }
             }

@@ -125,7 +125,7 @@ public class Gun : MonoBehaviour
                     mob.TakeDamage(weaponsetting.attackDamage);
                     if (!mob.coroutinelock)
                     {
-                        mob.target = GameObject.FindWithTag("Player").transform;
+                        mob.target = GameObject.FindWithTag("player").transform;
                         StartCoroutine(timer());
                     }
                 }

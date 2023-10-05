@@ -2219,8 +2219,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: c769b2fbe52745444a15747e9caa0e90,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7563463073631226819, guid: e60f23c0b5a85cf428f7fedb51ded394,
         type: 3}
       propertyPath: damage
@@ -3774,7 +3773,7 @@ GameObject:
   - component: {fileID: 1058045670}
   m_Layer: 0
   m_Name: PlayerObj
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3867,7 +3866,7 @@ BoxCollider:
   m_GameObject: {fileID: 1058045665}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4066,7 +4065,7 @@ MonoBehaviour:
   muzzleFlashEffect: {fileID: 806598764}
   weaponsetting:
     attackRate: 0.05
-    attackDamage: 1
+    attackDamage: 10
     attackDistance: 100
     maxarmo: 100
     reloadtime: 1
@@ -25717,9 +25716,10 @@ GameObject:
   - component: {fileID: 2005241586}
   - component: {fileID: 2005241588}
   - component: {fileID: 2005241587}
+  - component: {fileID: 2005241589}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25885,6 +25885,19 @@ MonoBehaviour:
   player: {fileID: 2005241581}
   gun: {fileID: 1108859893}
   zoommode: 0
+--- !u!65 &2005241589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005241581}
+  m_Material: {fileID: 13400000, guid: c769b2fbe52745444a15747e9caa0e90, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2016926539
 GameObject:
   m_ObjectHideFlags: 0
@@ -26116,7 +26129,7 @@ GameObject:
   - component: {fileID: 2075774468}
   m_Layer: 0
   m_Name: Orientation
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26147,8 +26160,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: c769b2fbe52745444a15747e9caa0e90,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7563463073631226819, guid: e60f23c0b5a85cf428f7fedb51ded394,
         type: 3}
       propertyPath: damage

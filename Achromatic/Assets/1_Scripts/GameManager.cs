@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        status = GameObject.FindWithTag("Player").GetComponent<Status>();
+        status = GameObject.FindWithTag("player").GetComponent<Status>();
         core = GameObject.FindWithTag("core").GetComponent<CoreScript>();
         anim = GameObject.Find("Shadow").GetComponent<Animator>();
         UserData.score = 0f;
