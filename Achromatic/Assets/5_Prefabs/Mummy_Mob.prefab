@@ -1141,7 +1141,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4121286b819fe40b689df7a24bba80be, type: 3}
+  - {fileID: 2100000, guid: 9a2f0518f0ac440508ec2598cc17eac4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1288,7 +1288,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4121286b819fe40b689df7a24bba80be, type: 3}
+  - {fileID: 2100000, guid: 280eda591c1b145c5b5ba8fcf25ca94e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2394,6 +2394,7 @@ MonoBehaviour:
   health: 100
   damage: 5
   score: 100
+  coroutinelock: 0
 --- !u!1 &4143748240580032510
 GameObject:
   m_ObjectHideFlags: 0

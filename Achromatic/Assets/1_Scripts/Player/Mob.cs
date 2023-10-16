@@ -73,7 +73,6 @@ public class Mob : MonoBehaviour
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.9f && attacklock==false)
                 {
-                    scoreScript.UpdateScore(-score);
                     if (damage >= playerstatus.hp)
                     {
                         damage = playerstatus.hp;
