@@ -2557,6 +2557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563463074848076779, guid: e60f23c0b5a85cf428f7fedb51ded394,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563463074848076779, guid: e60f23c0b5a85cf428f7fedb51ded394,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -25546,6 +25551,7 @@ GameObject:
   - component: {fileID: 2005241586}
   - component: {fileID: 2005241588}
   - component: {fileID: 2005241587}
+  - component: {fileID: 2005241590}
   - component: {fileID: 2005241589}
   m_Layer: 0
   m_Name: Player
@@ -25728,6 +25734,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2005241590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005241581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fced09b9ae8821d4a85e01c43ef3ca86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VEA: {fileID: 2929991948130327944, guid: cfdde14f88f9d894fbe2f64f85a30b53, type: 3}
+  timer: 0
 --- !u!1 &2016926539
 GameObject:
   m_ObjectHideFlags: 0
@@ -26285,6 +26305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mummy_Mob
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563463074848076779, guid: e60f23c0b5a85cf428f7fedb51ded394,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7563463074848076779, guid: e60f23c0b5a85cf428f7fedb51ded394,
         type: 3}
