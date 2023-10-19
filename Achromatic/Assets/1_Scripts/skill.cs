@@ -37,11 +37,12 @@ public class skill : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.E))
             {
-                VisualEffect visualEffectInstance = Instantiate(VEA,new Vector3(transform.position.x,transform.position.y+0.1f-1,transform.position.z),transform.rotation);
+                VisualEffect visualEffectInstance = Instantiate(VEA, new Vector3(transform.position.x, transform.position.y + 0.1f - 1, transform.position.z), transform.rotation);
                 visualEffectInstance.Play();
-                Debug.Log("±è¹Î¿ì ³»½Ã");
+
                 if (status.hp < status.Maxhp)
                 {
+                    
                     time = timer;
                     status.hp += 5;
                     hpScript.UpdateHp(status.hp);
