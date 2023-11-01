@@ -7,6 +7,7 @@ public class HomeMenu : MonoBehaviour
 {
     public void Home()
     {
+        GameObject.Find("RankManager").GetComponent<RankMain>().post();
         SceneManager.LoadScene("MainMenu");
     }
 }

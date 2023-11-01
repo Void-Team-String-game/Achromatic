@@ -148,8 +148,11 @@ public class Gun : MonoBehaviour
     {
         mob.coroutinelock = true;
         yield return new WaitForSeconds(5.0f);
-        mob.target = coretransform;
-        mob.coroutinelock = false;
+        if (mob != null)
+        {
+            mob.target = coretransform;
+            mob.coroutinelock = false;
+        }
     }
     #endregion
     

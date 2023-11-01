@@ -2246,7 +2246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c3fb7a0538ff14f8545f6f9e9f9c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxcorehp: 1000
+  maxcorehp: 1
   currentcorehp: 0
 --- !u!1001 &645405856
 PrefabInstance:
