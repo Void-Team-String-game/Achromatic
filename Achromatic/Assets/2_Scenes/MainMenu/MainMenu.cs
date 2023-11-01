@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject guide;
+    public Animator anim;
     public void ExitButton()
     {
         Application.Quit();
@@ -16,5 +18,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            guide.SetActive(false);
+            anim.SetTrigger("Normal");
+        }
+    }
 
 }
