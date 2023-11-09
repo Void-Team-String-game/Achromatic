@@ -27,28 +27,30 @@ public class skill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (time > 0)
+        if (PauseMenu.GameIsPaused == false)
         {
-            time -= Time.deltaTime;
-        }
-        else
-        {
-            
-            if (Input.GetKeyDown(KeyCode.E))
+            if (time > 0)
             {
-                VisualEffect visualEffectInstance = Instantiate(VEA, new Vector3(transform.position.x, transform.position.y + 0.1f - 1, transform.position.z), transform.rotation);
-                visualEffectInstance.Play();
-
-                if (status.hp < status.Maxhp)
-                {
-                    
-                    time = timer;
-                    status.hp += 5;
-                    hpScript.UpdateHp(status.hp);
-                }
+                time -= Time.deltaTime;
             }
+            else
+            {
 
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    VisualEffect visualEffectInstance = Instantiate(VEA, new Vector3(transform.position.x, transform.position.y + 0.1f - 1, transform.position.z), transform.rotation);
+                    visualEffectInstance.Play();
+
+                    if (status.hp < status.Maxhp)
+                    {
+
+                        time = timer;
+                        status.hp += 5;
+                        hpScript.UpdateHp(status.hp);
+                    }
+                }
+
+            }
         }
     }
 }

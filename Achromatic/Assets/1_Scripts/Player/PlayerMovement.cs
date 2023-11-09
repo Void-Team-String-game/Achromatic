@@ -57,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
 
     public MovementState state;             // 이동 방식 열거형
 
+    HpScript hpScript;
+    Status playerstatus;
+    bool coroutinelock = false;
+
     public GameObject PlayerObj;
     public GameObject PEffect;
     public enum MovementState
@@ -85,8 +89,11 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true; // 처음에 점프 True
-
+        
         startYScale = transform.localScale.y; // 처음 YScale받아 오기
+
+        hpScript = GameObject.Find("Hpbar").GetComponent<HpScript>();
+        playerstatus = gameObject.GetComponent<Status>();
     }
 
     private void Update()
@@ -111,11 +118,25 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        if (gameObject.transform.position.y < 5f && coroutinelock == false)
+        {
+            StartCoroutine(voiddamage());
+        }
     }
 
     private void FixedUpdate()
     {
         MovePlayer(); // RigidBody이기 문에 FixUpdate
+    }
+
+    private IEnumerator voiddamage()
+    {
+        coroutinelock = true;
+        yield return new WaitForSeconds(0.5f);
+        playerstatus.hp -= 10;
+        hpScript.UpdateHp(playerstatus.hp);
+        coroutinelock = false;
     }
 
     private void MyInput()
@@ -325,14 +346,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void UpdateAttack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(PauseMenu.GameIsPaused == false)
         {
-            Debug.Log("shoot!");
-            gun.StartWeaponAction();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            gun.StopWeaponAction();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("shoot!");
+                gun.StartWeaponAction();
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                gun.StopWeaponAction();
+            }
         }
     }
 }

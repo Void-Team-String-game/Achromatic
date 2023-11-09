@@ -186,20 +186,23 @@ public class Gun : MonoBehaviour
     #region Update Function
     private void Update()
     {
-        if (zoom.zoommode == true)
+        if(PauseMenu.GameIsPaused == false)
         {
-            stability = weaponsetting.stability * 2;
-            maxSpread = weaponsetting.maxSpread / 2;
-        }
-        else
-        {
-            stability = weaponsetting.stability;
-            maxSpread = weaponsetting.maxSpread;
-        }
-        currentSpread = Mathf.SmoothDamp(currentSpread, 0f, ref currentSpreadVelocity, 1f / weaponsetting.restoreFromRecoilSpeed);
-        currentSpread = Mathf.Clamp(currentSpread, 0f, maxSpread);
+            if (zoom.zoommode == true)
+            {
+                stability = weaponsetting.stability * 2;
+                maxSpread = weaponsetting.maxSpread / 2;
+            }
+            else
+            {
+                stability = weaponsetting.stability;
+                maxSpread = weaponsetting.maxSpread;
+            }
+            currentSpread = Mathf.SmoothDamp(currentSpread, 0f, ref currentSpreadVelocity, 1f / weaponsetting.restoreFromRecoilSpeed);
+            currentSpread = Mathf.Clamp(currentSpread, 0f, maxSpread);
 
-        if (Input.GetKeyDown(KeyCode.R)) Reload();
+            if (Input.GetKeyDown(KeyCode.R)) Reload();
+        }
     }
     #endregion
 }
