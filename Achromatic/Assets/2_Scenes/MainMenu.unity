@@ -891,7 +891,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: balloon208 / 1000
+  m_Text: '-'
 --- !u!222 &730116957
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1455,7 +1455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: balloon208 / 1000
+  m_Text: '-'
 --- !u!222 &1300509487
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1535,7 +1535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: balloon208 / 1000
+  m_Text: '-'
 --- !u!222 &1422521615
 CanvasRenderer:
   m_ObjectHideFlags: 0
