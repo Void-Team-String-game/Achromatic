@@ -24,5 +24,37 @@ public class ShowGameresult : MonoBehaviour
         {
             rank.text = "E";
         }
+        else if (UserData.score < 3000)
+        {
+            rank.text = "D";
+        }
+        else if (UserData.score < 5000)
+        {
+            rank.text = "C";
+        }
+        else if (UserData.score < 7500)
+        {
+            rank.text = "B";
+        }
+        else if (UserData.score < 10000)
+        {
+            rank.text = "A";
+        }
+        else if (UserData.score < 15000)
+        {
+            rank.text = "S";
+        }
+        else if (UserData.score < 20000)
+        {
+            rank.text = "SS";
+        }
+        else if (UserData.score < 30000)
+        {
+            rank.text = "U";
+        }
+        else
+        {
+            rank.text = "X";
+        }
     }
 }
