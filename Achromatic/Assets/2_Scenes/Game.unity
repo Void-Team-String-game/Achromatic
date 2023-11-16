@@ -884,7 +884,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366568219}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -932,7 +932,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300030, guid: db63fa1c2adceb141974024b30ffa6db, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -940,7 +940,7 @@ SpriteRenderer:
   m_Size: {x: 3.7000003, y: 2.5000002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &324526391
@@ -1256,7 +1256,7 @@ PrefabInstance:
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
       propertyPath: m_Name
-      value: Portal blue
+      value: Portal blue1
       objectReference: {fileID: 0}
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
@@ -1283,8 +1283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181402e03c855d0449244753105f030a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mob: {fileID: 4143748240580032508, guid: 2c1f0305ff033e34eaa5d4f3030528b4, type: 3}
-  cooltime: 5
+  mob: {fileID: 4143748240580032508, guid: 14da64c65fa5ddd49b19d1e28e6a0b8c, type: 3}
+  cooltime: 20
 --- !u!1 &393556153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1463,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366568219}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2017,8 +2017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181402e03c855d0449244753105f030a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mob: {fileID: 4143748240580032508, guid: 2c1f0305ff033e34eaa5d4f3030528b4, type: 3}
-  cooltime: 5
+  mob: {fileID: 4143748240580032508, guid: f3f264fe124af8b4c9cdcdddffd62de4, type: 3}
+  cooltime: 7
 --- !u!1001 &607316381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2099,7 +2099,7 @@ PrefabInstance:
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
       propertyPath: m_Name
-      value: Portal blue_1
+      value: Portal blue3
       objectReference: {fileID: 0}
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
@@ -2246,7 +2246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c3fb7a0538ff14f8545f6f9e9f9c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxcorehp: 1000
+  maxcorehp: 150
   currentcorehp: 0
 --- !u!1001 &645405856
 PrefabInstance:
@@ -3365,7 +3365,7 @@ PrefabInstance:
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
       propertyPath: m_Name
-      value: Portal blue
+      value: Portal blue2
       objectReference: {fileID: 0}
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
@@ -23746,7 +23746,7 @@ PrefabInstance:
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
       propertyPath: m_Name
-      value: Portal blue_2
+      value: Portal blue4
       objectReference: {fileID: 0}
     - target: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
         type: 3}
@@ -23942,8 +23942,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 197.5}
-  m_SizeDelta: {x: -60, y: -395}
+  m_AnchoredPosition: {x: -2.5, y: 197.5}
+  m_SizeDelta: {x: -55, y: -395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1331403637
 MonoBehaviour:
@@ -24011,9 +24011,9 @@ RectTransform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1612772775}
   - {fileID: 400507178}
   - {fileID: 324526389}
-  - {fileID: 1612772775}
   m_Father: {fileID: 2016926543}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24130,8 +24130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181402e03c855d0449244753105f030a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mob: {fileID: 4143748240580032508, guid: 2c1f0305ff033e34eaa5d4f3030528b4, type: 3}
-  cooltime: 5
+  mob: {fileID: 4143748240580032508, guid: 0d61753268e3c8340b4e9f8254090734, type: 3}
+  cooltime: 45
 --- !u!1 &1492188401
 GameObject:
   m_ObjectHideFlags: 0
@@ -24644,7 +24644,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366568219}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -24692,7 +24692,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300030, guid: db63fa1c2adceb141974024b30ffa6db, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -24700,7 +24700,7 @@ SpriteRenderer:
   m_Size: {x: 3.7000003, y: 2.5000002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1612772777
@@ -24914,6 +24914,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a170a8fa81c15504ab2e5f21f4a65378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portals:
+  - {fileID: 380169586}
+  - {fileID: 1731882870}
+  - {fileID: 580564958}
+  - {fileID: 1449984090}
 --- !u!1 &1731882870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5607819269926399345, guid: 45e0f06c750176947862c10346226439,
@@ -24932,8 +24937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181402e03c855d0449244753105f030a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mob: {fileID: 4143748240580032508, guid: 2c1f0305ff033e34eaa5d4f3030528b4, type: 3}
-  cooltime: 5
+  mob: {fileID: 4143748240580032508, guid: e3854f135671b7d4c9365d192e67f7ba, type: 3}
+  cooltime: 10
 --- !u!1 &1753281042
 GameObject:
   m_ObjectHideFlags: 0

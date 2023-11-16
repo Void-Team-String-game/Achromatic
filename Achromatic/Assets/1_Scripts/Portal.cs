@@ -6,10 +6,13 @@ public class Portal : MonoBehaviour
 {
     [SerializeField]
     private GameObject mob;
-    [SerializeField]
-    private float cooltime;
+    public float cooltime;
     private bool summonlock = false;
 
+    private void Start()
+    {
+        StartCoroutine(SummonMob(cooltime));
+    }
     void Update()
     {
         if(summonlock == false)

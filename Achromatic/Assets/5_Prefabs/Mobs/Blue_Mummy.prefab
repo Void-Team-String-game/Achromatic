@@ -1141,7 +1141,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a2f0518f0ac440508ec2598cc17eac4, type: 2}
+  - {fileID: 2100000, guid: d3a0fdafe06c149a7b5438f0ca87dd97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 4143748239161855958}
   - component: {fileID: 4143748239161855956}
   m_Layer: 0
-  m_Name: Mummy_Mob
+  m_Name: Blue_Mummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2366,7 +2366,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2391,9 +2391,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  health: 100
+  health: 50
   damage: 5
-  score: 100
+  score: 50
   coroutinelock: 0
 --- !u!1 &4143748240580032510
 GameObject:

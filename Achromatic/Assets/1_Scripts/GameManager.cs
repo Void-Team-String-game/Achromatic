@@ -8,8 +8,12 @@ public class GameManager : MonoBehaviour
     Status status;
     CoreScript core;
 
+    public GameObject[] portals;
+
     Animator anim;
     bool coroutinelock = false;
+
+    bool hardlock = false;
 
     private void Awake()
     {
@@ -26,6 +30,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine("Timer");
         }
+
+        if(hardlock == false)
+        {
+            StartCoroutine(Hardgame());
+        }
     }
 
     IEnumerator Timer()
@@ -36,5 +45,16 @@ public class GameManager : MonoBehaviour
         anim.SetBool("Die", false);
         coroutinelock = false;
         SceneManager.LoadScene("GameOver");
+    }
+
+    IEnumerator Hardgame()
+    {
+        hardlock = true;
+        yield return new WaitForSeconds(10f);
+        for(int i=0; i<portals.Length; i++)
+        {
+            portals[i].GetComponent<Portal>().cooltime -= 0.1f;
+        }
+        hardlock = false;
     }
 }
