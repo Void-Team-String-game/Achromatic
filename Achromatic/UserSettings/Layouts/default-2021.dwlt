@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 27455
+  controlID: 646
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 27456
+  controlID: 647
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 27451
+  controlID: 604
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 264.8
     height: 722.8
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -433,7 +433,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -100, y: -25.600006}
+      snapOffset: {x: -101, y: -26}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
@@ -681,9 +681,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.4376945, y: 65.385315, z: 30.932924}
+    m_Target: {x: 1280, y: 546.6666, z: 0}
     speed: 2
-    m_Value: {x: 3.4376945, y: 65.385315, z: 30.932924}
+    m_Value: {x: 1280, y: 546.6666, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -730,13 +730,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.23124261, y: 0.1386627, z: -0.033317834, w: -0.96238774}
+    m_Target: {x: 0.23084658, y: 0.041083395, z: -0.009342094, w: 0.97221714}
     speed: 2
-    m_Value: {x: -0.23124252, y: 0.13866265, z: -0.033317823, w: -0.9623874}
+    m_Value: {x: -0.2308466, y: -0.041083395, z: 0.009342094, w: -0.9722172}
   m_Size:
-    m_Target: 10
+    m_Target: 0.8660254
     speed: 2
-    m_Value: 10
+    m_Value: 0.8660254
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1010,9 +1010,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b0c40d00
-      m_LastClickedID: 902320
-      m_ExpandedIDs: 0e6cf6ffee47f7ffc40ff8ffcc5ef8ff2861f8ffb264f8ff7265f8fff4ccfcff5ed3fcff1891fdff2691fdff88e1fdffe02afeff72f0feff54fafefff400ffffcac6ffff32fbfffff66a0000726b0000b6cc000002cd000034cd000082cd000000ce000048d00000166d0100586d01000e6e01005a6e0100666e01008c6e0100306f01004a6f01005e6f0100fab00d0000b10d00dcb10d00cab50d0074bc0d00a6bc0d00cabc0d00aabd0d00e2bd0d00aabe0d0028c40d004cc40d005ec50d002cc60d00
+      m_SelectedIDs: 4c0d0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 44f7ffff4cf9ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1152,21 +1152,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/9_Sounds/1. SE/SE/Player
+    - Assets/1_Scripts/Player
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
   m_StartGridSize: 16
   m_LastFolders: []
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\user\Desktop\oneFile\Achromatic\Achromatic
+  m_LastProjectPath: C:\Users\user\Desktop\Achromatic\Achromatic
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: fa6d0000
     m_LastClickedID: 28154
-    m_ExpandedIDs: ffffffff00000000d26b0000986c00009a6c00009e6c0000a06c0000a26c00004acd00004ccd00004cd3000050d3000058d30000d0a40300f6700600
+    m_ExpandedIDs: ffffffff000000002c7400002e74000030740000327400003474000036740000ca75000010ca0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1191,10 +1191,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 144.20001}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000d26b0000986c00009a6c00009e6c0000a06c0000a26c0000986e00004acd00004ccd00004cd3000050d3000058d30000d0a40300f6700600
+    m_ExpandedIDs: ffffffff000000002c7400002e74000030740000327400003474000036740000ca75000010ca0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
