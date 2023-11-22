@@ -14,8 +14,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private ParticleSystem muzzleFlashEffect;
 
+    [Header("Sound Setting")]
     [SerializeField]
-    private GameObject soundPrefab;
+    private AudioSource shot;
 
     [Header("Weapon Setting")]
     public WeaponSetting weaponsetting;
@@ -104,9 +105,6 @@ public class Gun : MonoBehaviour
 
     public void OnAttack()
     {
-        GameObject temp = Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
-        temp.transform.SetParent(this.transform);
-
         if (Time.time - lastAttackTime > weaponsetting.attackRate)
         {
             lastAttackTime = Time.time;
@@ -138,7 +136,9 @@ public class Gun : MonoBehaviour
             armo--;
 
             painterScript.ShootPaint();
-            
+
+            shot.Play();
+
             StartCoroutine("OnMuzzleFlashEffect");
         }
     }
