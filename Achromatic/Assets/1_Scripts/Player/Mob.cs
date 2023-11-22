@@ -64,11 +64,13 @@ public class Mob : MonoBehaviour
         Destroy(gameObject);
     }
 
-
     private void OnTriggerStay(Collider other)
     {
+
         if (other.gameObject.tag == "player")
         {   
+            transform.GetChild(2).GetComponent<SoundManager>().Personal_PlaySound("MobSound", true);
+
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.3f && anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.9f && attacklock==false)

@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private ParticleSystem muzzleFlashEffect;
 
+    [SerializeField]
+    private GameObject soundPrefab;
 
     [Header("Weapon Setting")]
     public WeaponSetting weaponsetting;
@@ -102,7 +104,10 @@ public class Gun : MonoBehaviour
 
     public void OnAttack()
     {
-        if(Time.time - lastAttackTime > weaponsetting.attackRate)
+        GameObject temp = Instantiate(soundPrefab, this.transform.position, Quaternion.identity);
+        temp.transform.SetParent(this.transform);
+
+        if (Time.time - lastAttackTime > weaponsetting.attackRate)
         {
             lastAttackTime = Time.time;
 
@@ -134,7 +139,6 @@ public class Gun : MonoBehaviour
 
             painterScript.ShootPaint();
             
-            
             StartCoroutine("OnMuzzleFlashEffect");
         }
     }
@@ -162,6 +166,7 @@ public class Gun : MonoBehaviour
         if (reloading || armo == weaponsetting.maxarmo) return;
         else
         {
+            GameObject.FindGameObjectWithTag("Reload").GetComponent<SoundManager>().Personal_PlaySound("Reload", true);
             reloading = true;
             anim.SetBool("Reloading", true);
 

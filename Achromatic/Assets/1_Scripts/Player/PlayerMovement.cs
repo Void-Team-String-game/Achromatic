@@ -213,6 +213,9 @@ public class PlayerMovement : MonoBehaviour
         // Mode - Walking
         else if (grounded)
         {
+            Debug.Log(verticalInput); Debug.Log(horizontalInput);
+            if(verticalInput != 0.0f || horizontalInput != 0.0f)
+                SoundManager.Static_PlaySound("Walking", false);
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
@@ -253,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
                 float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal); //Vector3.up의 방향벡터와 slopeHit.normal의 법선벡터 사이의 각도를 구해 저장
                 float slopeAngleIncrease = 1 + (slopeAngle / 90f); // 90도를 넘어가면 1을 가속도 추가
 
-                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease; // 이동속도를 더 높혀줌
+                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease; // 이동속도를 더 높여 줌
             }
             else
                 time += Time.deltaTime * speedIncreaseMultiplier; // 경사로 아니면

@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject guide;
     public Animator anim;
+
     public void ExitButton()
     {
         Application.Quit();
@@ -18,13 +19,16 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    [System.Obsolete]
     public void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            if(guide.active == true)
+                SoundManager.Static_PlaySound("Cancel", false);
+
             guide.SetActive(false);
             anim.SetTrigger("Normal");
         }
     }
-
 }
