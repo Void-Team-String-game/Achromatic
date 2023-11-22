@@ -7,6 +7,7 @@ public class PainterScript : MonoBehaviour
     public static PainterScript Instance;
 
     public Transform PaintPrefab;
+    public GameObject HeadMuzzlePrefab;
     public GameObject MuzzlePrefab;
     public int MinSplashs = 5;
     public int MaxSplashs = 15;
@@ -41,7 +42,24 @@ public class PainterScript : MonoBehaviour
             {
                 if (hit.transform.GetComponent<Mob>() != null)
                 {
-                    GameObject ImpactGo = Instantiate(MuzzlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    bool head = false;
+                    RaycastHit[] headhitfinder = { };
+                    headhitfinder = Physics.RaycastAll(ray, Mathf.Infinity);
+
+                    for (int i = 0; i < headhitfinder.Length; i++)
+                    {
+                        if (headhitfinder[i].transform.name == "Head")
+                        {
+                            head = true;
+                        }
+                    }
+                    GameObject ImpactGo;
+                    if (head == true)
+                    {
+                        Debug.Log("Head Effect");
+                        ImpactGo = Instantiate(HeadMuzzlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                    }
+                    else ImpactGo = Instantiate(MuzzlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(ImpactGo, 0.5f);
                 }
                 else
