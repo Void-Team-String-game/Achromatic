@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
         // Mode - Walking
         else if (grounded)
         {
-            Debug.Log(verticalInput); Debug.Log(horizontalInput);
+            //Debug.Log(verticalInput); Debug.Log(horizontalInput);
             if(verticalInput != 0.0f || horizontalInput != 0.0f)
                 SoundManager.Static_PlaySound("Walking", false);
             state = MovementState.walking;

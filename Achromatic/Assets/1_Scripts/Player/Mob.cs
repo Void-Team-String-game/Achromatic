@@ -42,6 +42,7 @@ public class Mob : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+
         health -= amount;
         if(health <= 0)
         {
@@ -66,7 +67,6 @@ public class Mob : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
         if (other.gameObject.tag == "player")
         {   
             transform.GetChild(2).GetComponent<SoundManager>().Personal_PlaySound("MobSound", true);

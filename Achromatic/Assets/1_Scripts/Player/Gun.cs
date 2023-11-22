@@ -125,7 +125,21 @@ public class Gun : MonoBehaviour
                 mob = hit.transform.GetComponent<Mob>();
                 if(mob != null)
                 {
-                    mob.TakeDamage(weaponsetting.attackDamage);
+                    float damage = weaponsetting.attackDamage;
+
+                    RaycastHit[] headhitfinder = { };
+                    headhitfinder = Physics.RaycastAll(zoom.Cam.transform.position, fireDirection, weaponsetting.attackDistance);
+
+                    for(int i=0; i<headhitfinder.Length; i++)
+                    {
+                        if (headhitfinder[i].transform.name == "Head")
+                        {
+                            damage *= 2;
+                            Debug.Log("Head!");
+                        }
+                    }
+
+                    mob.TakeDamage(damage);
                     if (!mob.coroutinelock)
                     {
                         mob.target = GameObject.FindWithTag("player").transform;

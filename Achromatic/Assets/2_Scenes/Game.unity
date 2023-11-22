@@ -1502,7 +1502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 1127638106779865588, guid: cd2707bc8fd072743b103752b58845e5, type: 3}
-  cooltime: 20
+  cooltime: 200
 --- !u!1 &393556153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 7603088183025913040, guid: 15dcd8e112b59ec46ba99c508c259046, type: 3}
-  cooltime: 7
+  cooltime: 70
 --- !u!1001 &607316381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24830,7 +24830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 795059756698369560, guid: db6540c8dd6d9c34782f9af350591e9d, type: 3}
-  cooltime: 45
+  cooltime: 4
 --- !u!1 &1492188401
 GameObject:
   m_ObjectHideFlags: 0
@@ -25638,7 +25638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 7886430161250743299, guid: d4b69ef55df27804484b8617718fc9db, type: 3}
-  cooltime: 10
+  cooltime: 100
 --- !u!1 &1753281042
 GameObject:
   m_ObjectHideFlags: 0
@@ -25936,7 +25936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 1759177892}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 1184
+  m_shaderPropertyID: 1140
   m_materialData:
   - m_trailRenderer: {fileID: 1759177893}
     m_uvTiling: {x: 0.06, y: 0.4}
