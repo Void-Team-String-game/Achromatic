@@ -8,6 +8,9 @@ public class ShowGameresult : MonoBehaviour
     public Text rank;
     public Text currentscore;
     RankMain saveController;
+
+    [SerializeField]
+    private SoundManager soundManager;
     
     void Start()
     {
@@ -56,5 +59,14 @@ public class ShowGameresult : MonoBehaviour
         {
             rank.text = "X";
         }
+
+        if(UserData.score == 0)
+            soundManager.Personal_PlaySound("Failed", false);
+        else if(UserData.score < 5000)
+            soundManager.Personal_PlaySound("AlmostFailed", false);
+        else if (UserData.score < 10000)
+            soundManager.Personal_PlaySound("Succeed", false);
+        else
+            soundManager.Personal_PlaySound("WonderfulSucceed", false);
     }
 }

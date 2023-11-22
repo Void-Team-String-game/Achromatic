@@ -14,6 +14,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private ParticleSystem muzzleFlashEffect;
 
+    [Header("Sound Setting")]
+    [SerializeField]
+    private AudioSource shot;
 
     [Header("Weapon Setting")]
     public WeaponSetting weaponsetting;
@@ -102,7 +105,7 @@ public class Gun : MonoBehaviour
 
     public void OnAttack()
     {
-        if(Time.time - lastAttackTime > weaponsetting.attackRate)
+        if (Time.time - lastAttackTime > weaponsetting.attackRate)
         {
             lastAttackTime = Time.time;
 
@@ -122,7 +125,21 @@ public class Gun : MonoBehaviour
                 mob = hit.transform.GetComponent<Mob>();
                 if(mob != null)
                 {
-                    mob.TakeDamage(weaponsetting.attackDamage);
+                    float damage = weaponsetting.attackDamage;
+
+                    RaycastHit[] headhitfinder = { };
+                    headhitfinder = Physics.RaycastAll(zoom.Cam.transform.position, fireDirection, weaponsetting.attackDistance);
+
+                    for(int i=0; i<headhitfinder.Length; i++)
+                    {
+                        if (headhitfinder[i].transform.name == "Head")
+                        {
+                            damage *= 2;
+                            Debug.Log("Head!");
+                        }
+                    }
+
+                    mob.TakeDamage(damage);
                     if (!mob.coroutinelock)
                     {
                         mob.target = GameObject.FindWithTag("player").transform;
@@ -133,8 +150,9 @@ public class Gun : MonoBehaviour
             armo--;
 
             painterScript.ShootPaint();
-            
-            
+
+            shot.Play();
+
             StartCoroutine("OnMuzzleFlashEffect");
         }
     }
@@ -162,6 +180,7 @@ public class Gun : MonoBehaviour
         if (reloading || armo == weaponsetting.maxarmo) return;
         else
         {
+            GameObject.FindGameObjectWithTag("Reload").GetComponent<SoundManager>().Personal_PlaySound("Reload", true);
             reloading = true;
             anim.SetBool("Reloading", true);
 

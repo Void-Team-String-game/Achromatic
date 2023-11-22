@@ -7,6 +7,13 @@ TagManager:
   - Gun
   - core
   - player
+  - Select
+  - Submit
+  - Cancel
+  - Shot
+  - MobSound
+  - Reload
+  - Walking
   layers:
   - Default
   - TransparentFX
