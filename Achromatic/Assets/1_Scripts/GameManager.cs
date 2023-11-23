@@ -53,7 +53,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(10f);
         for(int i=0; i<portals.Length; i++)
         {
-            portals[i].GetComponent<Portal>().cooltime -= 0.1f;
+            Portal portalscript = portals[i].GetComponent<Portal>();
+            if (portalscript.cooltime > 0.5f)
+            {
+                portalscript.cooltime = (float)portalscript.cooltime * 99/100;
+            }
         }
         hardlock = false;
     }

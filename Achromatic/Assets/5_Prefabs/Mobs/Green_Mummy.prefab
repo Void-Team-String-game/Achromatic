@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   health: 100
-  damage: 10
+  damage: 20
   score: 100
   coroutinelock: 0
 --- !u!1 &7886430161250743301

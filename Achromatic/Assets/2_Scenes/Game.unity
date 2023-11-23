@@ -2606,7 +2606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c3fb7a0538ff14f8545f6f9e9f9c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxcorehp: 150
+  maxcorehp: 400
   currentcorehp: 0
 --- !u!1001 &645405856
 PrefabInstance:
@@ -26669,7 +26669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VEA: {fileID: 1879143659181830364, guid: cfdde14f88f9d894fbe2f64f85a30b53, type: 3}
-  timer: 0
+  timer: 20
 --- !u!1 &2016926539
 GameObject:
   m_ObjectHideFlags: 0

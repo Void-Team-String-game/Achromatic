@@ -17,7 +17,7 @@ public class skill : MonoBehaviour
     private float time;
     void Start()
     {
-        time = timer;
+        //time = timer;
         hpScript = GameObject.Find("Hpbar").GetComponent<HpScript>();
         player = GameObject.FindWithTag("player");
         status = player.GetComponent<Status>();
@@ -43,9 +43,12 @@ public class skill : MonoBehaviour
 
                     if (status.hp < status.Maxhp)
                     {
-
                         time = timer;
-                        status.hp += 5;
+                        status.hp += 25;
+                        if(status.hp >= status.Maxhp)
+                        {
+                            status.hp = status.Maxhp;
+                        }
                         hpScript.UpdateHp(status.hp);
                     }
                 }
